@@ -100,8 +100,8 @@ function About() {
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* 1. HERO SECTION - Uses the exact same rounded corners and gradient logic as Home */}
-      <section className="mt-16 relative h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950rounded-[2rem] shadow-2xl">
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-[2rem]">
+      <section className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute inset-0 bg-zinc-950/60 z-[1]" />
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-black z-[1]" />
           <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] animate-pulse z-[2]" />

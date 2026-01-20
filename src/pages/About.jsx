@@ -59,7 +59,7 @@ function About() {
     const inquiryPromise = new Promise(async (resolve, reject) => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:3000/api/contact", {
+        const response = await fetch("https://jnsfitness-be.onrender.com/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData)
@@ -71,7 +71,7 @@ function About() {
         }
 
         const message = buildWhatsAppMessage(formData);
-        const whatsappNumber = "8299301605";
+        const whatsappNumber = "8460479473";
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
         setTimeout(() => { window.open(whatsappURL, "_blank"); }, 1200);

@@ -1,0 +1,44 @@
+/* 1. Imports at the very top */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import "tailwindcss"; /* This replaces all 3 @tailwind directives */
+
+/* 2. Theme Configuration (The new way to extend Tailwind) */
+@theme {
+  --font-montserrat: "Montserrat", sans-serif;
+}
+
+/* 3. Global Base Styles */
+@layer base {
+  :root {
+    font-family: var(--font-montserrat);
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* 4. Component Styles */
+@layer components {
+  .btn-primary {
+    @apply px-5 py-2 rounded-lg bg-indigo-600 text-white font-medium
+           hover:bg-indigo-500 transition shadow-md;
+  }
+
+  .heading-primary {
+    @apply text-4xl md:text-5xl font-extrabold
+           bg-gradient-to-r from-indigo-400 to-white
+           bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10
+           rounded-2xl shadow-xl p-8;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+}

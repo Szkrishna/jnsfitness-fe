@@ -1,0 +1,28 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 10px var(--card-shadow-1), 0 8px 30px var(--card-shadow-2);
+  transition: transform 0.2s ease-in-out;
+  max-width: 1280px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.container {
+  padding: 2em;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 10px var(--card-shadow-1), 0 8px 30px var(--card-shadow-2);
+  max-width: 1280px;
+  min-height: 80vh;
+}

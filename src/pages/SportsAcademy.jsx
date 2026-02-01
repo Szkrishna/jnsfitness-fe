@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { FaGraduationCap, FaWind, FaUsers, FaAward, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import badmintonHero from "../assets/images/academy/badminton_1.avif";
 
@@ -17,7 +18,6 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-// 1. COMPONENT: CONTACT INFO (Moved outside to avoid re-declaration)
 function ContactInfo({ icon, title, detail }) {
   return (
     <div className="flex items-center justify-start gap-4">
@@ -25,14 +25,13 @@ function ContactInfo({ icon, title, detail }) {
         {icon}
       </div>
       <div className="flex flex-col text-left">
-        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">{title}</h4>
-        <p className="text-gray-200 font-bold text-sm md:text-base leading-tight">{detail}</p>
+        <h4 className="text-[12px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">{title}</h4>
+        <p className="text-gray-200 font-bold text-lg leading-tight">{detail}</p>
       </div>
     </div>
   );
 }
 
-// 2. COMPONENT: FEATURE CARD
 function FeatureCard({ icon, title, desc }) {
   return (
     <motion.div
@@ -51,15 +50,82 @@ function FeatureCard({ icon, title, desc }) {
 
 function SportsAcademy() {
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    program: "",
+    message: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const buildWhatsAppMessage = (data) => {
+    return `*New Sports Academy Inquiry*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Program:* ${data.program}\n*Message:* ${data.message}`;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.phone || !formData.program) {
+      toast.error("Please fill all required fields", {
+        style: { borderRadius: '12px', background: '#1a1a1a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' },
+      });
+      return;
+    }
+
+    const inquiryPromise = new Promise((resolve, reject) => {
+      (async () => {
+        try {
+          setLoading(true);
+          const response = await fetch("https://jnsfitness-be.onrender.com/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...formData, interest: `Badminton Academy: ${formData.program}` })
+          });
+
+          if (!response.ok) {
+            reject("Submission failed. Please try again.");
+            return;
+          }
+
+          const message = buildWhatsAppMessage(formData);
+          const whatsappNumber = "8460479473";
+          const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+          setTimeout(() => { window.open(whatsappURL, "_blank"); }, 1200);
+          setFormData({ name: "", phone: "", program: "", message: "" });
+          resolve("Success");
+        } catch (err) {
+          reject("Failed to connect. Please try again later.");
+        } finally {
+          setLoading(false);
+        }
+      })();
+    });
+
+    toast.promise(inquiryPromise, {
+      loading: 'Sending your inquiry...',
+      success: 'Inquiry sent! Opening WhatsApp...',
+      error: (err) => `${err}`,
+    }, {
+      style: { borderRadius: '12px', background: '#1a1a1a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', fontSize: '14px' },
+      success: { duration: 4000, iconTheme: { primary: '#4f46e5', secondary: '#fff' } },
+      error: { duration: 5000, iconTheme: { primary: '#ef4444', secondary: '#fff' } },
+    });
+  };
 
   return (
     <div className="bg-zinc-950 text-white px-6 md:px-16 lg:px-24 font-montserrat pb-20">
+      <Toaster position="top-center" reverseOrder={false} />
+      
       {/* HERO SECTION */}
-      <section className="relative min-h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
+      <section className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
         <div className="absolute inset-0 z-0">
           <img
             src={badmintonHero}
-            className="w-full h-full object-cover opacity-40 scale-105"
+            className="w-full h-full object-cover object-center opacity-40 scale-105"
             alt="Badminton Court"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950 z-[1]" />
@@ -102,26 +168,10 @@ function SportsAcademy() {
         viewport={{ once: true }}
         className="py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
       >
-        <FeatureCard
-          icon={<FaAward className="text-3xl" />}
-          title="12 Pro Courts"
-          desc="State-of-the-art synthetic and wooden courts for peak performance."
-        />
-        <FeatureCard
-          icon={<FaWind className="text-3xl" />}
-          title="Fully AC"
-          desc="Year-round professional climate control for intense sessions."
-        />
-        <FeatureCard
-          icon={<FaGraduationCap className="text-3xl" />}
-          title="Expert Coaching"
-          desc="Structured technique sessions for children and adults."
-        />
-        <FeatureCard
-          icon={<FaUsers className="text-3xl" />}
-          title="Community"
-          desc="A performance-driven environment for elite athletes."
-        />
+        <FeatureCard icon={<FaAward className="text-3xl" />} title="12 Pro Courts" desc="State-of-the-art synthetic and wooden courts for peak performance." />
+        <FeatureCard icon={<FaWind className="text-3xl" />} title="Fully AC" desc="Year-round professional climate control for intense sessions." />
+        <FeatureCard icon={<FaGraduationCap className="text-3xl" />} title="Expert Coaching" desc="Structured technique sessions for children and adults." />
+        <FeatureCard icon={<FaUsers className="text-3xl" />} title="Community" desc="A performance-driven environment for elite athletes." />
       </motion.section>
 
       {/* ENQUIRE / CONNECT SECTION */}
@@ -145,13 +195,10 @@ function SportsAcademy() {
             className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem] flex flex-col justify-between"
           >
             <div className="text-left">
-              <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">
-                Office Hours: 6AM - 10PM
-              </span>
+              <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">Office Hours: 6AM - 10PM</span>
               <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase mb-10">
                 Badminton <span className="text-indigo-500">HQ</span>
               </h2>
-
               <div className="space-y-8">
                 <ContactInfo icon={<FaMapMarkerAlt />} title="Location" detail="Sector 51, Near Artemis, Gurgaon" />
                 <ContactInfo icon={<FaPhone />} title="Phone" detail="+91 84604 79473" />
@@ -165,30 +212,37 @@ function SportsAcademy() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-2xl"
+            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-2xl flex flex-col justify-center"
           >
             <h2 className="text-3xl font-black tracking-tight uppercase mb-6">
               Book a <span className="text-indigo-500">Trial</span>
             </h2>
 
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Full Name" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:border-indigo-500 outline-none" />
-                <input type="tel" placeholder="Phone Number" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:border-indigo-500 outline-none" />
+                <input required minLength="3" name="name" value={formData.name} onChange={handleChange} type="text" placeholder="Full Name" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-sm text-white focus:border-indigo-500 outline-none transition-all" />
+                <input required pattern="[0-9]{10}" name="phone" value={formData.phone} onChange={handleChange} type="tel" placeholder="Phone (10-digit)" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-sm text-white focus:border-indigo-500 outline-none transition-all" />
               </div>
-              <select className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all">
-                <option value="">Select Program</option>
-                <option value="Kids">Kids Coaching</option>
-                <option value="Adult">Adult Training</option>
+              <select required name="program" value={formData.program} onChange={handleChange} className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all">
+                <option value="">Select Program (Required)</option>
+                <option value="Kids Coaching">Kids Coaching</option>
+                <option value="Adult Training">Adult Training</option>
+                <option value="Court Booking">Court Booking</option>
               </select>
-              <textarea placeholder="Share your requirements with us..." rows="2" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-4 text-sm text-white resize-none outline-none" />
+              <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Share your requirements with us..." rows="2" className="w-full bg-zinc-950/40 border border-white/10 rounded-xl px-5 py-3 text-sm text-white resize-none outline-none focus:border-indigo-500 transition-all" />
+              
               <motion.button
-                type="button"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl uppercase tracking-[0.2em] text-xs transition-all shadow-lg shadow-indigo-600/20"
+                type="submit"
+                disabled={loading}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl uppercase tracking-[0.2em] text-xs transition-all shadow-lg shadow-indigo-600/20 flex justify-center items-center gap-2"
               >
-                Submit Inquiry
+                {loading ? (
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  "Submit Inquiry"
+                )}
               </motion.button>
             </form>
           </motion.div>

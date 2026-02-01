@@ -12,7 +12,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="w-full mt-12 border-t border-white/20 pt-10 pb-8 bg-zinc-950">
+    <footer className="w-full border-t border-white/20 pt-10 pb-8 bg-zinc-950">
       {/* INNER CONTAINER */}
       <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
         {/* TOP SECTION */}

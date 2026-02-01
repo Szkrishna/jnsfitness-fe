@@ -63,7 +63,7 @@ function Header() {
             About
           </NavLink>
           <NavLink to="/sports-academy" className={linkClasses}>
-            Academy
+            Badminton
           </NavLink>
           <NavLink to="/fitness-club" className={linkClasses}>
             Fitness

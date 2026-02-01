@@ -267,9 +267,9 @@ function About() {
                     onChange={handleChange}
                     className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all"
                   >
-                    <option value="" className="bg-zinc-950text-gray-400">Gender</option>
-                    <option value="Male" className="bg-zinc-950">Male</option>
-                    <option value="Female" className="bg-zinc-950">Female</option>
+                    <option value="">Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                   </select>
                 </div>
               </div>
@@ -282,10 +282,10 @@ function About() {
                 onChange={handleChange}
                 className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all"
               >
-                <option value="" className="bg-zinc-950text-gray-400">Select Interest (Required)</option>
-                <option value="Badminton" className="bg-zinc-950">Badminton</option>
-                <option value="GYM" className="bg-zinc-950">GYM</option>
-                <option value="Coliving" className="bg-zinc-950">Coliving</option>
+                <option value="">Select Interest (Required)</option>
+                <option value="Badminton">Badminton</option>
+                <option value="GYM">GYM</option>
+                <option value="Coliving">Coliving</option>
               </select>
 
               <textarea
@@ -316,8 +316,8 @@ function About() {
       </section>
 
       {/* 4. MAP SECTION */}
-      <section className="pb-10 max-w-7xl mx-auto">
-        <div className="mb-8 border-t border-white/5">
+      <section className="pb-20 max-w-7xl mx-auto">
+        <div className="mb-8">
           <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px]">Location Guide</span>
           <h2 className="text-3xl font-black tracking-tight uppercase mt-1">Find <span className="text-indigo-500">Us</span></h2>
         </div>

@@ -40,7 +40,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="bg-zinc-950 text-white px-6 md:px-16 lg:px-24 font-montserrat">
+    <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
       
       {/* 1. HERO SECTION */}
       <section className="relative max-h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl">

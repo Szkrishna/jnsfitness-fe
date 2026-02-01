@@ -1,6 +1,6 @@
 function Coliving() {
   return (
-    <div className="bg-zinc-950 text-white px-6 md:px-16 lg:px-24 font-montserrat">
+    <div className="bg-zinc-950 text-white px-0 font-montserrat">
       <section className="relative w-full bg-zinc-950 text-white overflow-hidden rounded-3xl shadow-2xl">
         {/* Ambient Background Glows */}
         <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl" />

@@ -96,7 +96,7 @@ function About() {
   };
 
   return (
-    <div className="bg-zinc-950 text-white px-6 md:px-16 lg:px-24 font-montserrat">
+    <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* 1. HERO SECTION - Uses the exact same rounded corners and gradient logic as Home */}

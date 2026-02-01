@@ -117,7 +117,7 @@ function SportsAcademy() {
   };
 
   return (
-    <div className="bg-zinc-950 text-white px-6 md:px-16 lg:px-24 font-montserrat pb-20">
+    <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
       <Toaster position="top-center" reverseOrder={false} />
       
       {/* HERO SECTION */}
@@ -175,7 +175,7 @@ function SportsAcademy() {
       </motion.section>
 
       {/* ENQUIRE / CONNECT SECTION */}
-      <section className="max-w-7xl mx-auto">
+      <section className="max-w-7xl mx-auto pb-20">
         <div className="mb-12">
           <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">Admission Open</span>
           <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">

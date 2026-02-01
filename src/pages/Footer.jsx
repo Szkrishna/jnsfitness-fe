@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer className="w-full border-t border-white/20 pt-10 pb-8 bg-zinc-950">
       {/* INNER CONTAINER */}
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* TOP SECTION */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 text-left">
           {/* 1. Brand Section */}

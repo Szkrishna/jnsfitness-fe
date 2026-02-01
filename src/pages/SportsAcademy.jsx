@@ -1,46 +1,197 @@
-function SportsAcademy() {
+/* eslint-disable no-unused-vars */
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { FaGraduationCap, FaWind, FaUsers, FaAward, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import badmintonHero from "../assets/images/academy/badminton_1.avif";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+// 1. COMPONENT: CONTACT INFO (Moved outside to avoid re-declaration)
+function ContactInfo({ icon, title, detail }) {
   return (
-    <div className="bg-zinc-950 text-white px-6 md:px-16 lg:px-24 font-montserrat">
-      <section className="relative w-full bg-zinc-950 text-white overflow-hidden rounded-3xl shadow-2xl">
-        {/* Ambient Background Glows (Same as About) */}
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-3xl" />
+    <div className="flex items-center justify-start gap-4">
+      <div className="w-12 h-12 shrink-0 rounded-xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl">
+        {icon}
+      </div>
+      <div className="flex flex-col text-left">
+        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">{title}</h4>
+        <p className="text-gray-200 font-bold text-sm md:text-base leading-tight">{detail}</p>
+      </div>
+    </div>
+  );
+}
 
-        {/* Content */}
-        <div className="relative z-10 flex min-h-[65vh] justify-center px-6 pt-8">
-          <div className="max-w-2xl w-full text-center">
+// 2. COMPONENT: FEATURE CARD
+function FeatureCard({ icon, title, desc }) {
+  return (
+    <motion.div
+      variants={itemVariants}
+      whileHover={{ y: -10 }}
+      className="p-4 bg-white/5 border border-white/10 rounded-3xl hover:border-indigo-500/50 transition-all group flex flex-col items-center text-center"
+    >
+      <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300 flex justify-center text-indigo-500">
+        {icon}
+      </div>
+      <h3 className="text-lg font-bold mb-3 uppercase tracking-tight">{title}</h3>
+      <p className="text-gray-500 text-sm leading-relaxed max-w-[200px]">{desc}</p>
+    </motion.div>
+  );
+}
 
-            {/* Section Label */}
-            <span className="inline-block text-xs uppercase tracking-widest text-indigo-400 mb-4">
-              Sports Academy
-            </span>
+function SportsAcademy() {
+  const [loading, setLoading] = useState(false);
 
-            {/* Heading */}
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-indigo-300 to-white bg-clip-text text-transparent">
-              Badminton Academy
-            </h1>
+  return (
+    <div className="bg-zinc-950 text-white px-6 md:px-16 lg:px-24 font-montserrat pb-20">
+      {/* HERO SECTION */}
+      <section className="relative min-h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={badmintonHero}
+            className="w-full h-full object-cover opacity-40 scale-105"
+            alt="Badminton Court"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950 z-[1]" />
+          <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] z-[2]" />
+        </div>
 
-            {/* Subtext */}
-            <p className="mt-6 text-gray-400 text-sm md:text-lg leading-relaxed max-w-xl mx-auto">
-              We’re preparing a professional badminton training facility with
-              expert coaching, modern infrastructure, and a performance-driven
-              learning environment.
-            </p>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10 text-center max-w-4xl px-6"
+        >
+          <span className="text-indigo-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
+            11 Years of Excellence
+          </span>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6">
+            JNS SPORTS ACADEMY
+          </h1>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
+            Recognized as one of North India’s most elite badminton facilities.
+            Where champions are forged through precision and passion.
+          </p>
 
-            {/* Divider */}
-            <div className="mt-8 h-px w-24 bg-indigo-500/40 mx-auto" />
-
-            {/* Status Badges */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <span className="px-6 py-2 text-sm rounded-full bg-green-500/10 text-green-400 border border-green-500/30">
-                Currently Operating
-              </span>
-
-              <span className="px-6 py-2 text-sm rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 animate-pulse">
-                Page Coming Soon
-              </span>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-widest text-green-400">Verified Khelo India Centre</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
+              <span className="text-xs font-bold uppercase tracking-widest text-indigo-400">Fitso Partner</span>
             </div>
           </div>
+        </motion.div>
+      </section>
+
+      {/* FEATURES SECTION */}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+      >
+        <FeatureCard
+          icon={<FaAward className="text-3xl" />}
+          title="12 Pro Courts"
+          desc="State-of-the-art synthetic and wooden courts for peak performance."
+        />
+        <FeatureCard
+          icon={<FaWind className="text-3xl" />}
+          title="Fully AC"
+          desc="Year-round professional climate control for intense sessions."
+        />
+        <FeatureCard
+          icon={<FaGraduationCap className="text-3xl" />}
+          title="Expert Coaching"
+          desc="Structured technique sessions for children and adults."
+        />
+        <FeatureCard
+          icon={<FaUsers className="text-3xl" />}
+          title="Community"
+          desc="A performance-driven environment for elite athletes."
+        />
+      </motion.section>
+
+      {/* ENQUIRE / CONNECT SECTION */}
+      <section className="max-w-7xl mx-auto">
+        <div className="mb-12">
+          <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">Admission Open</span>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
+            Connect <span className="text-indigo-500">Academy</span>
+          </h2>
+          <p className="text-gray-400 mt-4 text-base md:text-lg font-medium leading-relaxed">
+            Reach out to our head office for trial sessions, court bookings, or coaching programs.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem] flex flex-col justify-between"
+          >
+            <div className="text-left">
+              <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">
+                Office Hours: 6AM - 10PM
+              </span>
+              <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase mb-10">
+                Badminton <span className="text-indigo-500">HQ</span>
+              </h2>
+
+              <div className="space-y-8">
+                <ContactInfo icon={<FaMapMarkerAlt />} title="Location" detail="Sector 51, Near Artemis, Gurgaon" />
+                <ContactInfo icon={<FaPhone />} title="Phone" detail="+91 84604 79473" />
+                <ContactInfo icon={<FaUsers />} title="Programs" detail="Kids Coaching & Adult Training" />
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-2xl"
+          >
+            <h2 className="text-3xl font-black tracking-tight uppercase mb-6">
+              Book a <span className="text-indigo-500">Trial</span>
+            </h2>
+
+            <form className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" placeholder="Full Name" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:border-indigo-500 outline-none" />
+                <input type="tel" placeholder="Phone Number" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:border-indigo-500 outline-none" />
+              </div>
+              <select className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all">
+                <option value="">Select Program</option>
+                <option value="Kids">Kids Coaching</option>
+                <option value="Adult">Adult Training</option>
+              </select>
+              <textarea placeholder="Share your requirements with us..." rows="2" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-4 text-sm text-white resize-none outline-none" />
+              <motion.button
+                type="button"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl uppercase tracking-[0.2em] text-xs transition-all shadow-lg shadow-indigo-600/20"
+              >
+                Submit Inquiry
+              </motion.button>
+            </form>
+          </motion.div>
         </div>
       </section>
     </div>

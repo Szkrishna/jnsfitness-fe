@@ -138,7 +138,7 @@ function About() {
 
       {/* 2. CORE BUSINESS STATS - Section header matched to Home "Ecosystem" */}
       <section className="py-20 max-w-7xl mx-auto text-left">
-        <div className="mb-12">
+        <div className="mb-8">
           <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Our Legacy</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">The <span className="text-indigo-500">Standard</span></h2>
           <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
@@ -165,26 +165,15 @@ function About() {
       </section>
 
       {/* 3. CONTACT & FORM SECTION */}
-      <section className="pb-20 max-w-7xl mx-auto">
-        {/* ROW 1: TITLE */}
-        <div className="mb-4">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">Neighborhood</span>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
-            Connect <span className="text-indigo-500">Elite</span>
-          </h2>
-        </div>
-
-        {/* ROW 2: DESCRIPTION */}
-        <div className="mb-12 max-w-3xl">
-          <p className="text-gray-400 text-base md:text-lg font-medium leading-relaxed">
-            Reach out to us for premium accommodations. Highly rated for our cleanliness
-            and dedicated facilities for women and girl students in the heart of Gurgaon.
-          </p>
+      <section className="pb-20 max-w-7xl flex flex-col text-left">
+        <div className="mb-8">
+          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Neighborhood</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">Connect <span className="text-indigo-500">Elite</span></h2>
+          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
+          <p className="text-gray-500 text-sm mt-4">Reach out to us for premium accommodations. Highly rated for our cleanliness and dedicated facilities for women and girl students in the heart of Gurgaon.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-
-          {/* Address/Contact Card - col-5 */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
@@ -316,11 +305,18 @@ function About() {
       </section>
 
       {/* 4. MAP SECTION */}
-      <section className="pb-20 max-w-7xl mx-auto">
+      <section className="pb-20 max-w-7xl flex flex-col text-left">
         <div className="mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px]">Location Guide</span>
-          <h2 className="text-3xl font-black tracking-tight uppercase mt-1">Find <span className="text-indigo-500">Us</span></h2>
+          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Location Guide</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">Find <span className="text-indigo-500">Us</span></h2>
+          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
+          <p className="text-gray-500 text-sm mt-4">
+            Located in the prime residential hub of <strong>Sector 51, Gurgaon</strong>.
+            JNS Elite Stay offers the perfect balance of peaceful living with immediate access to
+            major corporate offices, retail centers, and our flagship fitness facilities.
+          </p>
         </div>
+
         <div className="rounded-[2rem] overflow-hidden border border-white/10 h-[350px] relative z-0">
           <MapContainer center={position} zoom={15} scrollWheelZoom={false} style={{ height: "100%", width: "100%", filter: "invert(100%) hue-rotate(180deg) brightness(0.95)" }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

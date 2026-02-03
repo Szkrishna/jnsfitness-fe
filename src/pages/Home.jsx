@@ -43,7 +43,7 @@ function Home() {
     <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
       
       {/* 1. HERO SECTION */}
-      <section className="relative max-h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl">
+      <section className="relative max-h-[80vh] h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <video
             ref={videoRef}
@@ -89,7 +89,7 @@ function Home() {
 
       {/* 2. THE ECOSYSTEM SECTION */}
       <section className="py-20 max-w-7xl mx-auto text-left">
-        <div className="mb-12">
+        <div className="mb-8">
           <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Our Core</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">The <span className="text-indigo-500">Ecosystem</span></h2>
           <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
@@ -103,8 +103,8 @@ function Home() {
       </section>
 
       {/* 3. BROWSE ACCOMMODATION SECTION */}
-      <section className="py-20 max-w-7xl mx-auto overflow-visible">
-        <div className="mb-12">
+      <section className="py-20 max-w-7xl flex flex-col text-left">
+        <div className="mb-8">
           <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Premium Stays</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
             Browse <span className="text-indigo-500">Accommodation</span>
@@ -113,9 +113,9 @@ function Home() {
           <p className="text-gray-500 text-sm mt-4">Luxury living spaces curated for your comfort and lifestyle.</p>
         </div>
 
-        <div className="relative group/swiper-container">
-          <button className="swiper-prev-button absolute left-2 md:left-[-20px] top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">←</button>
-          <button className="swiper-next-button absolute right-2 md:right-[-20px] top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">→</button>
+        <div className="relative group/swiper-container px-44">
+          <button className="swiper-prev-button absolute left-2 md:left-[2px] top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">←</button>
+          <button className="swiper-next-button absolute right-2 md:right-[2px] top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">→</button>
 
           <Swiper
             effect={"coverflow"}
@@ -145,8 +145,8 @@ function Home() {
       </section>
 
       {/* 4. CUSTOMER REVIEWS SECTION */}
-      <section className="py-20 max-w-7xl mx-auto">
-        <div className="mb-12">
+      <section className="py-20 max-w-7xl flex flex-col text-left">
+        <div className="mb-8">
           <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Testimonials</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
             How Our <span className="text-indigo-500">Community</span> Feels
@@ -167,8 +167,8 @@ function Home() {
       </section>
 
       {/* 5. JNS MEMORIES SECTION */}
-      <section className="py-20 max-w-7xl mx-auto">
-        <div className="mb-12">
+      <section className="py-20 max-w-7xl flex flex-col text-left">
+        <div className="mb-8">
           <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Life at JNS</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
             <span className="text-indigo-500">JNS</span> We Create Memories

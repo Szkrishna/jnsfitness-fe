@@ -21,7 +21,7 @@ function App() {
           2. px-0 lg:px-24: matches Header/Footer alignment
           3. max-w-7xl mx-auto: keeps content centered on huge screens
         */}
-        <main className="flex-grow px-16 w-full max-w-7xl mx-auto mt-8">
+        <main class="flex-grow px-4 sm:px-8 md:px-16 w-full max-w-7xl mx-auto mt-8">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

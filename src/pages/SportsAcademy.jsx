@@ -160,50 +160,35 @@ function SportsAcademy() {
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* HERO SECTION */}
-      <section className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
-        <div className="absolute inset-0 z-0">
+      <section className="relative min-h-[30vh] md:h-[70vh] flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-2 md:mt-4 px-4">
+        <div className="absolute inset-0">
           <img
             src={badmintonHero}
-            className="w-full h-full object-cover object-center opacity-40 scale-105"
+            className="w-full h-full object-cover opacity-40 scale-105"
             alt="Badminton Court"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950 z-[1]" />
-          <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] z-[2]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950" />
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center max-w-4xl px-6"
+          className="relative z-10 text-center max-w-4xl"
         >
-          <span className="text-indigo-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
+          <span className="text-indigo-400 font-bold tracking-[0.3em] uppercase text-xs block mb-4">
             11 Years of Excellence
           </span>
 
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-6">
             JNS SPORTS & BADMINTON ACADEMY
           </h1>
 
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
+          <p className="text-gray-300 text-sm sm:text-lg max-w-2xl mx-auto font-medium">
             With over 11 years of excellence, JNS Sports & Badminton Academy is
             recognized as one of North India’s most elite badminton training
             facilities, offering professional coaching and world-class
             infrastructure.
           </p>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-widest text-green-400">
-                Verified Khelo India Centre
-              </span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
-              <span className="text-xs font-bold uppercase tracking-widest text-indigo-400">
-                Fitso Partner
-              </span>
-            </div>
-          </div>
         </motion.div>
       </section>
 
@@ -213,7 +198,7 @@ function SportsAcademy() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        className="py-8 md:py-16 lg:py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
       >
         <FeatureCard
           icon={<FaAward className="text-3xl" />}
@@ -239,7 +224,7 @@ function SportsAcademy() {
 
       {/* CONNECT SECTION */}
       <section className="max-w-7xl pb-20 flex flex-col text-left">
-        <div className="mb-8">
+        <div className="mb-4 md:mb-8">
           <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Admission Open</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
             <span className="text-indigo-500">Connect</span> Academy

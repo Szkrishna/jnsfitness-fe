@@ -2,7 +2,14 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaGraduationCap, FaWind, FaUsers, FaAward, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import {
+  FaGraduationCap,
+  FaWind,
+  FaUsers,
+  FaAward,
+  FaMapMarkerAlt,
+  FaPhone,
+} from "react-icons/fa";
 import badmintonHero from "../assets/images/academy/badminton_1.avif";
 
 const containerVariants = {
@@ -25,8 +32,12 @@ function ContactInfo({ icon, title, detail }) {
         {icon}
       </div>
       <div className="flex flex-col text-left">
-        <h4 className="text-[12px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">{title}</h4>
-        <p className="text-gray-200 font-bold text-lg leading-tight">{detail}</p>
+        <h4 className="text-[12px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">
+          {title}
+        </h4>
+        <p className="text-gray-200 font-bold text-lg leading-tight">
+          {detail}
+        </p>
       </div>
     </div>
   );
@@ -42,8 +53,12 @@ function FeatureCard({ icon, title, desc }) {
       <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300 flex justify-center text-indigo-500">
         {icon}
       </div>
-      <h3 className="text-lg font-bold mb-3 uppercase tracking-tight">{title}</h3>
-      <p className="text-gray-500 text-sm leading-relaxed max-w-[200px]">{desc}</p>
+      <h3 className="text-lg font-bold mb-3 uppercase tracking-tight">
+        {title}
+      </h3>
+      <p className="text-gray-500 text-sm leading-relaxed max-w-[200px]">
+        {desc}
+      </p>
     </motion.div>
   );
 }
@@ -54,7 +69,7 @@ function SportsAcademy() {
     name: "",
     phone: "",
     program: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -70,7 +85,12 @@ function SportsAcademy() {
 
     if (!formData.name || !formData.phone || !formData.program) {
       toast.error("Please fill all required fields", {
-        style: { borderRadius: '12px', background: '#1a1a1a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' },
+        style: {
+          borderRadius: "12px",
+          background: "#1a1a1a",
+          color: "#fff",
+          border: "1px solid rgba(255,255,255,0.1)",
+        },
       });
       return;
     }
@@ -79,11 +99,17 @@ function SportsAcademy() {
       (async () => {
         try {
           setLoading(true);
-          const response = await fetch("https://jnsfitness-be.onrender.com/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...formData, interest: `Badminton Academy: ${formData.program}` })
-          });
+          const response = await fetch(
+            "https://jnsfitness-be.onrender.com/api/contact",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                ...formData,
+                interest: `Badminton Academy: ${formData.program}`,
+              }),
+            }
+          );
 
           if (!response.ok) {
             reject("Submission failed. Please try again.");
@@ -92,9 +118,14 @@ function SportsAcademy() {
 
           const message = buildWhatsAppMessage(formData);
           const whatsappNumber = "8460479473";
-          const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+          const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+            message
+          )}`;
 
-          setTimeout(() => { window.open(whatsappURL, "_blank"); }, 1200);
+          setTimeout(() => {
+            window.open(whatsappURL, "_blank");
+          }, 1200);
+
           setFormData({ name: "", phone: "", program: "", message: "" });
           resolve("Success");
         } catch (err) {
@@ -105,21 +136,29 @@ function SportsAcademy() {
       })();
     });
 
-    toast.promise(inquiryPromise, {
-      loading: 'Sending your inquiry...',
-      success: 'Inquiry sent! Opening WhatsApp...',
-      error: (err) => `${err}`,
-    }, {
-      style: { borderRadius: '12px', background: '#1a1a1a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', fontSize: '14px' },
-      success: { duration: 4000, iconTheme: { primary: '#4f46e5', secondary: '#fff' } },
-      error: { duration: 5000, iconTheme: { primary: '#ef4444', secondary: '#fff' } },
-    });
+    toast.promise(
+      inquiryPromise,
+      {
+        loading: "Sending your inquiry...",
+        success: "Inquiry sent! Opening WhatsApp...",
+        error: (err) => `${err}`,
+      },
+      {
+        style: {
+          borderRadius: "12px",
+          background: "#1a1a1a",
+          color: "#fff",
+          border: "1px solid rgba(255,255,255,0.1)",
+          fontSize: "14px",
+        },
+      }
+    );
   };
 
   return (
     <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
       <Toaster position="top-center" reverseOrder={false} />
-      
+
       {/* HERO SECTION */}
       <section className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
         <div className="absolute inset-0 z-0">
@@ -140,21 +179,29 @@ function SportsAcademy() {
           <span className="text-indigo-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
             11 Years of Excellence
           </span>
+
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6">
-            JNS SPORTS ACADEMY
+            JNS SPORTS & BADMINTON ACADEMY
           </h1>
+
           <p className="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
-            Recognized as one of North India’s most elite badminton facilities.
-            Where champions are forged through precision and passion.
+            With over 11 years of excellence, JNS Sports & Badminton Academy is
+            recognized as one of North India’s most elite badminton training
+            facilities, offering professional coaching and world-class
+            infrastructure.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-widest text-green-400">Verified Khelo India Centre</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-green-400">
+                Verified Khelo India Centre
+              </span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
-              <span className="text-xs font-bold uppercase tracking-widest text-indigo-400">Fitso Partner</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-indigo-400">
+                Fitso Partner
+              </span>
             </div>
           </div>
         </motion.div>
@@ -168,22 +215,38 @@ function SportsAcademy() {
         viewport={{ once: true }}
         className="py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
       >
-        <FeatureCard icon={<FaAward className="text-3xl" />} title="12 Pro Courts" desc="State-of-the-art synthetic and wooden courts for peak performance." />
-        <FeatureCard icon={<FaWind className="text-3xl" />} title="Fully AC" desc="Year-round professional climate control for intense sessions." />
-        <FeatureCard icon={<FaGraduationCap className="text-3xl" />} title="Expert Coaching" desc="Structured technique sessions for children and adults." />
-        <FeatureCard icon={<FaUsers className="text-3xl" />} title="Community" desc="A performance-driven environment for elite athletes." />
+        <FeatureCard
+          icon={<FaAward className="text-3xl" />}
+          title="12 Elite Courts"
+          desc="12 state-of-the-art synthetic and wooden courts built for high-performance training and competitive play."
+        />
+        <FeatureCard
+          icon={<FaWind className="text-3xl" />}
+          title="Fully Air-Conditioned"
+          desc="A completely climate-controlled facility ensuring year-round comfort for players."
+        />
+        <FeatureCard
+          icon={<FaGraduationCap className="text-3xl" />}
+          title="Tailored Coaching"
+          desc="Structured coaching for children and flexible professional training programs for adults."
+        />
+        <FeatureCard
+          icon={<FaUsers className="text-3xl" />}
+          title="Professional Affiliations"
+          desc="Recognized Khelo India centre and official Fitso partner for elite sports access."
+        />
       </motion.section>
 
-      {/* ENQUIRE / CONNECT SECTION */}
-      <section className="max-w-7xl mx-auto pb-20">
-        <div className="mb-12">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">Admission Open</span>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
-            Connect <span className="text-indigo-500">Academy</span>
+      {/* CONNECT SECTION */}
+      <section className="max-w-7xl pb-20 flex flex-col text-left">
+        <div className="mb-8">
+          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Admission Open</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
+            <span className="text-indigo-500">Connect</span> Academy
           </h2>
-          <p className="text-gray-400 mt-4 text-base md:text-lg font-medium leading-relaxed">
-            Reach out to our head office for trial sessions, court bookings, or coaching programs.
-          </p>
+          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
+          <p className="text-gray-500 text-sm mt-4 italic">Get in touch with JNS Sports & Badminton Academy for professional
+            coaching, trial sessions, and court bookings in a world-class training environment.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -192,18 +255,31 @@ function SportsAcademy() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem] flex flex-col justify-between"
+            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem]"
           >
-            <div className="text-left">
-              <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">Office Hours: 6AM - 10PM</span>
-              <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase mb-10">
-                Badminton <span className="text-indigo-500">HQ</span>
-              </h2>
-              <div className="space-y-8">
-                <ContactInfo icon={<FaMapMarkerAlt />} title="Location" detail="Sector 51, Near Artemis, Gurgaon" />
-                <ContactInfo icon={<FaPhone />} title="Phone" detail="+91 84604 79473" />
-                <ContactInfo icon={<FaUsers />} title="Programs" detail="Kids Coaching & Adult Training" />
-              </div>
+            <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">
+              Office Hours: 6AM - 10PM
+            </span>
+            <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase mb-10">
+              Badminton <span className="text-indigo-500">HQ</span>
+            </h2>
+
+            <div className="space-y-8">
+              <ContactInfo
+                icon={<FaMapMarkerAlt />}
+                title="Location"
+                detail="Sector 51, Near Artemis, Gurgaon"
+              />
+              <ContactInfo
+                icon={<FaPhone />}
+                title="Phone"
+                detail="+91 84604 79473"
+              />
+              <ContactInfo
+                icon={<FaUsers />}
+                title="Training Programs"
+                detail="Structured Kids Coaching & Flexible Adult Training"
+              />
             </div>
           </motion.div>
 
@@ -212,10 +288,10 @@ function SportsAcademy() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-2xl flex flex-col justify-center"
+            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-[2.5rem]"
           >
             <h2 className="text-3xl font-black tracking-tight uppercase mb-6">
-              Book a <span className="text-indigo-500">Trial</span>
+              Enquire for <span className="text-indigo-500">Training</span>
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -230,7 +306,7 @@ function SportsAcademy() {
                 <option value="Court Booking">Court Booking</option>
               </select>
               <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Share your requirements with us..." rows="2" className="w-full bg-zinc-950/40 border border-white/10 rounded-xl px-5 py-3 text-sm text-white resize-none outline-none focus:border-indigo-500 transition-all" />
-              
+
               <motion.button
                 type="submit"
                 disabled={loading}

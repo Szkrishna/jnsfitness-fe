@@ -68,7 +68,7 @@ function SportsAcademy() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    program: "",
+    plan: "",
     message: "",
   });
 
@@ -83,7 +83,7 @@ function SportsAcademy() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.program) {
+    if (!formData.name || !formData.phone || !formData.plan) {
       toast.error("Please fill all required fields", {
         style: {
           borderRadius: "12px",
@@ -100,7 +100,7 @@ function SportsAcademy() {
         try {
           setLoading(true);
           const response = await fetch(
-            "https://jnsfitness-be.onrender.com/api/contact",
+            "https://jnsfitness-be.onrender.com/api/badmintonPage",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -284,7 +284,7 @@ function SportsAcademy() {
                 <input required minLength="3" name="name" value={formData.name} onChange={handleChange} type="text" placeholder="Full Name" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-sm text-white focus:border-indigo-500 outline-none transition-all" />
                 <input required pattern="[0-9]{10}" name="phone" value={formData.phone} onChange={handleChange} type="tel" placeholder="Phone (10-digit)" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-sm text-white focus:border-indigo-500 outline-none transition-all" />
               </div>
-              <select required name="program" value={formData.program} onChange={handleChange} className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all">
+              <select required name="plan" value={formData.plan} onChange={handleChange} className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all">
                 <option value="">Select Program (Required)</option>
                 <option value="Kids Coaching">Kids Coaching</option>
                 <option value="Adult Training">Adult Training</option>

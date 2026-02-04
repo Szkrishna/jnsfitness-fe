@@ -2,10 +2,16 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaMapMarkerAlt, FaPhone, FaDumbbell, FaClock, FaHeartbeat, FaUsers } from "react-icons/fa";
+import { FaMapMarkerAlt,FaUserCheck ,FaPeopleArrows ,FaSnowflake , FaPhone, FaDumbbell, FaClock, FaHeartbeat, FaRunning, FaBolt, FaUserNinja,FaLayerGroup, FaUsers } from "react-icons/fa";
 // Importing the requested background image
 import gymHero from "../assets/images/fitness_studio/gym_img2.jpeg";
-
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+};
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -25,12 +31,32 @@ function ContactInfo({ icon, title, detail }) {
   );
 }
 
+function FeatureCard({ icon, title, desc }) {
+  return (
+    <motion.div
+      variants={itemVariants}
+      whileHover={{ y: -10 }}
+      className="p-4 bg-white/5 border border-white/10 rounded-3xl hover:border-indigo-500/50 transition-all group flex flex-col items-center text-center"
+    >
+      <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300 flex justify-center text-indigo-500">
+        {icon}
+      </div>
+      <h3 className="text-lg font-bold mb-3 uppercase tracking-tight">
+        {title}
+      </h3>
+      <p className="text-gray-500 text-sm leading-relaxed max-w-[200px]">
+        {desc}
+      </p>
+    </motion.div>
+  );
+}
+
 function FitnessClub() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    interest: "GYM",
+    membership: "",
     message: ""
   });
 
@@ -39,7 +65,7 @@ function FitnessClub() {
   };
 
   const buildWhatsAppMessage = (data) => {
-    return `*New Gym Inquiry*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Interest:* ${data.interest}\n*Message:* ${data.message}`;
+    return `*New Gym Inquiry*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Gym Membership:* ${data.membership}\n*Message:* ${data.message}`;
   };
 
   const handleSubmit = async (e) => {
@@ -56,7 +82,7 @@ function FitnessClub() {
       (async () => {
         try {
           setLoading(true);
-          const response = await fetch("https://jnsfitness-be.onrender.com/api/contact", {
+          const response = await fetch("https://jnsfitness-be.onrender.com/api/gymPage", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData)
@@ -110,46 +136,31 @@ function FitnessClub() {
           <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] z-[2]" />
         </div>
 
-        <div className="relative z-10 flex flex-col justify-center items-center px-6 text-center">
-          <motion.span 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }}
-            className="inline-block text-xs uppercase tracking-[0.3em] text-indigo-400 mb-4 font-bold"
-          >
-            Elite Fitness Club
-          </motion.span>
 
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-black tracking-tighter bg-gradient-to-r from-indigo-400 via-indigo-200 to-white bg-clip-text text-transparent uppercase leading-none"
-          >
-            Gym Is <span className="text-white">Open 💪</span>
-          </motion.h1>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10 text-center max-w-4xl"
+        >
+          <span className="text-indigo-400 font-bold tracking-[0.5em] uppercase text-xs block mb-4">
+            Strength Meets Heritage
+          </span>
 
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 text-gray-300 text-sm md:text-lg leading-relaxed max-w-xl mx-auto font-medium"
-          >
-            Experience premium facilities in Sector 51, Gurgaon. 
-            Our fitness hub is fully operational and welcoming new members.
-          </motion.p>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-6">
+            JNS FITNESS STUDIO 🏋️‍♂️
+          </h1>
 
-          <div className="mt-10 flex flex-wrap gap-4 justify-center">
-            <span className="px-6 py-2 text-xs font-bold uppercase tracking-widest rounded-full bg-green-500/10 text-green-400 border border-green-500/30 backdrop-blur-md">
-              Currently Operating
-            </span>
-            <span className="px-6 py-2 text-xs font-bold uppercase tracking-widest rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 animate-pulse backdrop-blur-md">
-              Join Today
-            </span>
-          </div>
-        </div>
+          <p className="text-gray-300 text-sm sm:text-lg max-w-2xl mx-auto font-medium">
+            At JNS, fitness is not just a routine; it is part of our DNA. Building on our decade-long legacy as North India’s premier badminton academy, we have expanded to provide a high-energy, premium gym experience in the heart of Sector 51, Gurugram.
+            We don't just offer machines; we offer a transformation journey backed by the same discipline and professional standards that have produced champion athletes for over 10 years.
+            Our Specialized Zones
+          </p>
+        </motion.div>
+
       </section>
 
       {/* QUICK INFO SECTION */}
-      <section className="py-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* <section className="py-24 grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
           { icon: <FaDumbbell />, title: "Modern Gear", desc: "Top-tier strength and cardio equipment." },
           { icon: <FaClock />, title: "Flexible Hours", desc: "Open early to late for your convenience." },
@@ -161,7 +172,133 @@ function FitnessClub() {
             <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
           </div>
         ))}
-      </section>
+      </section> */}
+
+     
+
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+       className="pt-8 md:pt-16 lg:pt-24 pb-4 md:pb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+      >
+        <FeatureCard
+          icon={<FaDumbbell className="text-3xl" />}
+          title="The Power Floor"
+          desc="Dedicated strength and weight-lifting zones equipped with premium machines to build raw power and endurance."
+        />
+
+        <FeatureCard
+          icon={<FaRunning className="text-3xl" />}
+          title="Cardio & Stamina Zone"
+          desc="Advanced treadmills and ellipticals engineered for heart health, stamina improvement, and fat loss."
+        />
+
+        <FeatureCard
+          icon={<FaBolt className="text-3xl" />}
+          title="CrossFit & Functional Arena"
+          desc="A high-energy open-plan arena designed for functional training, agility drills, and HIIT workouts."
+        />
+
+        <FeatureCard
+          icon={<FaUserNinja className="text-3xl" />}
+          title="Martial Arts Studio"
+          desc="Train under T.L. Rao, a Seoul-trained Grandmaster with 40+ years of Taekwondo and discipline-based combat training."
+        />
+      </motion.section>
+
+
+      {/* this section for further text  */}
+
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="pt-4 md:pt-8 pb-8 md:pb-16 lg:pb-24"
+      >
+        {/* Section Header */}
+        <motion.div
+          variants={itemVariants}
+          className="mb-12 text-center"
+        >
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">
+            Why Train at <span className="text-indigo-500">JNS?</span>
+          </h2>
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+            More than a gym — a complete performance-driven sports ecosystem.
+          </p>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            {
+              icon: <FaUserCheck />,
+              title: "Certified Guidance",
+              desc: "Work with expert trainers who provide personalized fitness plans tailored to your specific body goals."
+            },
+            {
+              icon: <FaPeopleArrows />,
+              title: "Diverse Group Classes",
+              desc: "Break the monotony with high-energy sessions including Zumba, Yoga, and Aerobics."
+            },
+            {
+              icon: <FaLayerGroup />,
+              title: "A Holistic Ecosystem",
+              desc: "As a JNS member, combine your gym workouts with access to 12 elite badminton courts and recovery spaces including seating and café areas."
+            },
+            {
+              icon: <FaSnowflake />,
+              title: "Prime Comfort",
+              desc: "Our 3,600 sq. ft. fully air-conditioned facility is hygienic, spacious, and equipped with clean washrooms and ample parking."
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              variants={itemVariants}
+              className="relative p-6 md:p-8 bg-white/5 border border-white/10 
+                   rounded-[1.75rem] hover:border-indigo-500/50 
+                   transition-all duration-300 group"
+            >
+              {/* Accent Line */}
+              <div className="absolute left-0 top-8 bottom-8 w-1 
+                        bg-indigo-500/60 rounded-full" />
+
+              <div className="flex gap-5 items-start pl-4">
+                <div className="text-3xl text-indigo-500 
+                          group-hover:scale-110 transition-transform">
+                  {item.icon}
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-bold mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       {/* ENQUIRE SECTION */}
       <section className="max-w-7xl mx-auto">
@@ -171,7 +308,7 @@ function FitnessClub() {
             Get In <span className="text-indigo-500">Touch</span>
           </h2>
           <p className="text-gray-400 mt-4 text-base md:text-lg font-medium leading-relaxed">
-            Start your fitness journey today. Drop us a message for membership plans, 
+            Start your fitness journey today. Drop us a message for membership plans,
             personal training sessions, or a free day-pass.
           </p>
         </div>
@@ -213,13 +350,13 @@ function FitnessClub() {
                 <input required minLength="3" name="name" value={formData.name} onChange={handleChange} type="text" placeholder="Full Name" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-sm text-white focus:border-indigo-500 outline-none transition-all" />
                 <input required pattern="[0-9]{10}" name="phone" value={formData.phone} onChange={handleChange} type="tel" placeholder="Phone (10-digit)" className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-sm text-white focus:border-indigo-500 outline-none transition-all" />
               </div>
-              <select required name="interest" value={formData.interest} onChange={handleChange} className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all">
+              <select required name="membership" value={formData.membership} onChange={handleChange} className="w-full bg-zinc-950/50 border border-white/10 rounded-xl px-5 py-3 text-white text-sm appearance-none outline-none cursor-pointer focus:border-indigo-500 transition-all">
                 <option value="GYM">Gym Membership</option>
                 <option value="Personal Training">Personal Training</option>
                 <option value="General Inquiry">General Inquiry</option>
               </select>
               <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your fitness goals..." rows="2" className="w-full bg-zinc-950/40 border border-white/10 rounded-xl px-5 py-3 text-sm text-white resize-none outline-none focus:border-indigo-500 transition-all" />
-              
+
               <motion.button
                 type="submit"
                 disabled={loading}

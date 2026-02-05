@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaMapMarkerAlt,FaUserCheck ,FaPeopleArrows ,FaSnowflake , FaPhone, FaDumbbell, FaClock, FaHeartbeat, FaRunning, FaBolt, FaUserNinja,FaLayerGroup, FaUsers } from "react-icons/fa";
+import { FaMapMarkerAlt, FaUserCheck, FaPeopleArrows, FaSnowflake, FaPhone, FaDumbbell, FaClock, FaHeartbeat, FaRunning, FaBolt, FaUserNinja, FaLayerGroup, FaUsers } from "react-icons/fa";
 // Importing the requested background image
 import gymHero from "../assets/images/fitness_studio/gym_img2.jpeg";
 const containerVariants = {
@@ -124,7 +124,7 @@ function FitnessClub() {
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* HERO SECTION WITH BACKGROUND IMAGE */}
-      <section className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
+      <section className="relative min-h-[40vh] md:min-h-[65vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
         <div className="absolute inset-0 z-0">
           <img
             src={gymHero}
@@ -142,7 +142,7 @@ function FitnessClub() {
           animate={{ opacity: 1, y: 0 }}
           className="relative z-10 text-center max-w-4xl"
         >
-          <span className="text-indigo-400 font-bold tracking-[0.5em] uppercase text-xs block mb-4">
+          <span className="text-indigo-300 font-bold tracking-[0.5em] uppercase text-xs block mb-4">
             Strength Meets Heritage
           </span>
 
@@ -156,32 +156,15 @@ function FitnessClub() {
             Our Specialized Zones
           </p>
         </motion.div>
-
       </section>
 
       {/* QUICK INFO SECTION */}
-      {/* <section className="py-24 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[
-          { icon: <FaDumbbell />, title: "Modern Gear", desc: "Top-tier strength and cardio equipment." },
-          { icon: <FaClock />, title: "Flexible Hours", desc: "Open early to late for your convenience." },
-          { icon: <FaHeartbeat />, title: "Health First", desc: "Clean, hygienic and safe workout space." }
-        ].map((item, i) => (
-          <div key={i} className="p-8 bg-white/5 border border-white/10 rounded-[2rem] text-center hover:border-indigo-500/50 transition-all group">
-            <div className="text-3xl text-indigo-500 mb-4 flex justify-center group-hover:scale-110 transition-transform">{item.icon}</div>
-            <h3 className="text-lg font-black uppercase tracking-tight mb-2">{item.title}</h3>
-            <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-          </div>
-        ))}
-      </section> */}
-
-     
-
       <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-       className="pt-8 md:pt-16 lg:pt-24 pb-4 md:pb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        className="pt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
       >
         <FeatureCard
           icon={<FaDumbbell className="text-3xl" />}
@@ -208,7 +191,6 @@ function FitnessClub() {
         />
       </motion.section>
 
-
       {/* this section for further text  */}
 
       <motion.section
@@ -216,17 +198,18 @@ function FitnessClub() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="pt-4 md:pt-8 pb-8 md:pb-16 lg:pb-24"
+        className="pt-20 max-w-7xl mx-auto px-4 md:px-0"
       >
         {/* Section Header */}
         <motion.div
           variants={itemVariants}
           className="mb-12 text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">
-            Why Train at <span className="text-indigo-500">JNS?</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
+            Why Train <span className="text-indigo-500">at JNS?</span>
           </h2>
-          <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">
             More than a gym — a complete performance-driven sports ecosystem.
           </p>
         </motion.div>
@@ -259,16 +242,12 @@ function FitnessClub() {
               key={i}
               variants={itemVariants}
               className="relative p-6 md:p-8 bg-white/5 border border-white/10 
-                   rounded-[1.75rem] hover:border-indigo-500/50 
-                   transition-all duration-300 group"
-            >
+                rounded-[1.75rem] hover:border-indigo-500/50 transition-all duration-300 group">
               {/* Accent Line */}
-              <div className="absolute left-0 top-8 bottom-8 w-1 
-                        bg-indigo-500/60 rounded-full" />
+              <div className="absolute left-0 top-8 bottom-8 w-1 bg-indigo-500/60 rounded-full" />
 
-              <div className="flex gap-5 items-start pl-4">
-                <div className="text-3xl text-indigo-500 
-                          group-hover:scale-110 transition-transform">
+              <div className="flex gap-5 items-center pl-4 ">
+                <div className="text-3xl text-indigo-500 group-hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
 
@@ -286,34 +265,17 @@ function FitnessClub() {
         </div>
       </motion.section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       {/* ENQUIRE SECTION */}
-      <section className="max-w-7xl mx-auto">
-        <div className="mb-12">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">Join The Club</span>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
-            Get In <span className="text-indigo-500">Touch</span>
-          </h2>
-          <p className="text-gray-400 mt-4 text-base md:text-lg font-medium leading-relaxed">
-            Start your fitness journey today. Drop us a message for membership plans,
-            personal training sessions, or a free day-pass.
-          </p>
+      <section className="pt-20 max-w-7xl mx-auto">
+        <div className="mb-8">
+          <span className="font-bold tracking-widest uppercase text-xs">Join The Club</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">Get In <span className="text-indigo-500">Touch</span></h2>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">Start your fitness journey today. Drop us a message for membership plans,
+            personal training sessions, or a free day-pass.</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           <motion.div
             variants={itemVariants}
             initial="hidden"

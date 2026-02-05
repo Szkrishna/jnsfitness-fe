@@ -64,7 +64,7 @@ function Home() {
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-indigo-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block"
+            className="text-indigo-800 font-bold tracking-[0.3em] uppercase text-xs mb-4 block"
           >
             Gurugram's Ultimate Fitness Destination
           </motion.span>
@@ -88,14 +88,14 @@ function Home() {
       </section>
 
       {/* 2. THE ECOSYSTEM SECTION */}
-      <section className="py-20 max-w-7xl mx-auto text-left">
+      <section className="pt-20 max-w-7xl mx-auto text-center">
         <div className="mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Our Core</span>
+          <span className="font-bold tracking-widest uppercase text-xs">Our Core</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">The <span className="text-indigo-500">Ecosystem</span></h2>
-          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
-          <p className="text-gray-500 text-sm mt-4">Everything you need to reach your peak performance.</p>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">Everything you need to reach your peak performance.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> 
           <EcoCard to="/sports-academy" title="Academy" bgImage={badmintonImg} status="Operating" statusColor="text-green-400" />
           <EcoCard to="/fitness-club" title="Fitness Club" bgImage={gymImg} status="Operating" statusColor="text-green-400" />
           <EcoCard to="/coliving" title="Co-Living" bgImage={colivingImg} status="Operating" statusColor="text-green-400" />
@@ -103,14 +103,14 @@ function Home() {
       </section>
 
       {/* 3. BROWSE ACCOMMODATION SECTION */}
-      <section className="py-20 max-w-7xl flex flex-col text-left">
+      <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Premium Stays</span>
+          <span className="font-bold tracking-widest uppercase text-xs">Premium Stays</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
             Browse <span className="text-indigo-500">Accommodation</span>
           </h2>
-          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
-          <p className="text-gray-500 text-sm mt-4">Luxury living spaces curated for your comfort and lifestyle.</p>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">Luxury living spaces curated for your comfort and lifestyle.</p>
         </div>
 
         <div className="relative group/swiper-container px-44">
@@ -145,17 +145,17 @@ function Home() {
       </section>
 
       {/* 4. CUSTOMER REVIEWS SECTION */}
-      <section className="py-20 max-w-7xl flex flex-col text-left">
+      <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Testimonials</span>
+          <span className="font-bold tracking-widest uppercase text-xs">Testimonials</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
-            How Our <span className="text-indigo-500">Community</span> Feels
+            How Our <span className="text-indigo-500">Community Feels</span>
           </h2>
-          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
-          <div className="flex items-center gap-4 mt-6">
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <div className="flex items-center gap-4 mt-4 justify-center">
             <span className="text-green-400 font-bold">Excellent</span>
             <div className="flex text-green-400 text-lg">★★★★★</div>
-            <span className="text-gray-500 text-sm italic">8,738 Verified Reviews</span>
+            <span className="text-gray-400 text-sm mt-4">8,738 Verified Reviews</span>
           </div>
         </div>
 
@@ -167,14 +167,14 @@ function Home() {
       </section>
 
       {/* 5. JNS MEMORIES SECTION */}
-      <section className="py-20 max-w-7xl flex flex-col text-left">
+      <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Life at JNS</span>
+          <span className="font-bold tracking-widest uppercase text-xs">Life at JNS</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
-            <span className="text-indigo-500">JNS</span> We Create Memories
+            At JNS We <span className="text-indigo-500">Create Memories</span>
           </h2>
-          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
-          <p className="text-gray-500 text-sm mt-4 italic">Spark while you stay by enjoying events, festivals, and celebrations.</p>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">Spark while you stay by enjoying events, festivals, and celebrations.</p>
         </div>
 
         <div className="relative group/memories">

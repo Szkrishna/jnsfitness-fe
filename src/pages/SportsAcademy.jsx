@@ -223,14 +223,14 @@ function SportsAcademy() {
       </motion.section>
 
       {/* CONNECT SECTION */}
-      <section className="max-w-7xl pb-20 flex flex-col text-left">
+      <section className="max-w-7xl pb-20 flex flex-col text-center">
         <div className="mb-4 md:mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Admission Open</span>
+          <span className="font-bold tracking-widest uppercase text-xs">Admission Open</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
-            <span className="text-indigo-500">Connect</span> Academy
+            Connect <span className="text-indigo-500">Academy</span>
           </h2>
-          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
-          <p className="text-gray-500 text-sm mt-4 italic">Get in touch with JNS Sports & Badminton Academy for professional
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">Get in touch with JNS Sports & Badminton Academy for professional
             coaching, trial sessions, and court bookings in a world-class training environment.</p>
         </div>
 

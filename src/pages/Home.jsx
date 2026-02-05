@@ -40,10 +40,9 @@ function Home() {
   }, []);
 
   return (
-    <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
-      
+    <div className="bg-zinc-950 text-white px-0 font-montserrat">
       {/* 1. HERO SECTION */}
-      <section className="relative max-h-[80vh] h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl">
+      <section className="relative max-h-[40vh] md:max-h-[80vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <video
             ref={videoRef}
@@ -64,7 +63,7 @@ function Home() {
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-indigo-800 font-bold tracking-[0.3em] uppercase text-xs mb-4 block"
+            className="text-indigo-300 font-bold tracking-[0.3em] uppercase text-xs mb-4 block"
           >
             Gurugram's Ultimate Fitness Destination
           </motion.span>
@@ -114,8 +113,8 @@ function Home() {
         </div>
 
         <div className="relative group/swiper-container px-44">
-          <button className="swiper-prev-button absolute left-2 md:left-[2px] top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">←</button>
-          <button className="swiper-next-button absolute right-2 md:right-[2px] top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">→</button>
+          <button className="swiper-prev-button absolute left-2 md:left-[2px] top-1/2 -translate-y-1/2 z-20 w-20 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">←</button>
+          <button className="swiper-next-button absolute right-2 md:right-[2px] top-1/2 -translate-y-1/2 z-20 w-20 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">→</button>
 
           <Swiper
             effect={"coverflow"}

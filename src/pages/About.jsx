@@ -137,12 +137,12 @@ function About() {
       </section>
 
       {/* 2. CORE BUSINESS STATS - Section header matched to Home "Ecosystem" */}
-      <section className="py-20 max-w-7xl mx-auto text-left">
+      <section className="pt-20 max-w-7xl mx-auto text-center">
         <div className="mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Our Legacy</span>
+          <span className="font-bold tracking-widest uppercase text-xs">Our Legacy</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">The <span className="text-indigo-500">Standard</span></h2>
-          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
-          <p className="text-gray-500 text-sm mt-4">Trusted quality and professional hospitality since 2020.</p>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4"></div>
+          <p className="text-gray-400 text-sm mt-4">Trusted quality and professional hospitality since 2020.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -165,12 +165,12 @@ function About() {
       </section>
 
       {/* 3. CONTACT & FORM SECTION */}
-      <section className="pb-20 max-w-7xl flex flex-col text-left">
+      <section className="pb-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Neighborhood</span>
+          <span className="font-bold tracking-widest uppercase text-xs">Neighborhood</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">Connect <span className="text-indigo-500">Elite</span></h2>
-          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
-          <p className="text-gray-500 text-sm mt-4">Reach out to us for premium accommodations. Highly rated for our cleanliness and dedicated facilities for women and girl students in the heart of Gurgaon.</p>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4"></div>
+          <p className="text-gray-400 text-sm mt-4">Reach out to us for premium accommodations. Highly rated for our cleanliness and dedicated facilities for women and girl students in the heart of Gurgaon.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -305,12 +305,12 @@ function About() {
       </section>
 
       {/* 4. MAP SECTION */}
-      <section className="pb-20 max-w-7xl flex flex-col text-left">
+      <section className="pb-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
-          <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs">Location Guide</span>
+          <span className="font-bold tracking-widest uppercase text-xs">Location Guide</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">Find <span className="text-indigo-500">Us</span></h2>
-          <div className="h-[2px] w-12 bg-indigo-600 mt-4"></div>
-          <p className="text-gray-500 text-sm mt-4">
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4"></div>
+          <p className="text-gray-400 text-sm mt-4">
             Located in the prime residential hub of <strong>Sector 51, Gurgaon</strong>.
             JNS Elite Stay offers the perfect balance of peaceful living with immediate access to
             major corporate offices, retail centers, and our flagship fitness facilities.
@@ -341,7 +341,7 @@ function ValueCard({ icon, title, desc }) {
 function ContactInfo({ icon, title, detail }) {
   return (
     <div className="flex items-center justify-start gap-4">
-      <div className="w-12 h-12 shrink-0 rounded-xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl">{icon}</div>
+      <div className="w-20 h-12 shrink-0 rounded-xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl">{icon}</div>
       <div className="flex flex-col">
         <h4 className="text-[12px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">{title}</h4>
         <p className="text-gray-200 font-bold text-lg leading-tight">{detail}</p>

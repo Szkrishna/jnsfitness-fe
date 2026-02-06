@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import {
   FaMapMarkerAlt, FaPhone, FaHistory, FaHotel, FaUsers, FaStar
 } from "react-icons/fa";
+import gymBg from "../assets/images/fitness_studio/gym_img1.jpeg";
 
 // Leaflet Marker Fix
 import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -100,8 +101,13 @@ function About() {
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* 1. HERO SECTION - Uses the exact same rounded corners and gradient logic as Home */}
-      <section className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl">
+      <section className="relative min-h-[55vh] md:min-h-[60vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
         <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src={gymBg}
+            alt="JNS Fitness Background"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-40 scale-105"
+          />
           <div className="absolute inset-0 bg-zinc-950/60 z-[1]" />
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-black z-[1]" />
           <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] animate-pulse z-[2]" />
@@ -112,28 +118,38 @@ function About() {
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-indigo-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block"
+            className="text-indigo-300 font-bold tracking-[0.3em] uppercase text-xs mb-4 block"
           >
-            Verified & Claimed Professional Stay
+            Integrated Lifestyle Destination
           </motion.span>
+
           <motion.h1
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-8xl font-black tracking-tighter bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent leading-none"
+            className="text-5xl md:text-8xl font-black tracking-tighter leading-none"
           >
-            JNS ELITE STAY. <br /> <span className="text-white">PREMIUM LIVING.</span>
+            <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent block">
+              JNS ECOSYSTEM.
+            </span>
+            <span className="block text-white text-2xl md:text-4xl font-extrabold tracking-widest mt-2 md:mt-4">
+              LIVE • TRAIN • CONNECT.
+            </span>
+
           </motion.h1>
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
             className="mt-6 text-gray-200 text-base md:text-xl max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-lg"
           >
-            Providing premium unisex accommodations in Sector 51, Gurgaon for over 6 years.
-            Highly rated for our cleanliness and dedicated facilities for women and girl students.
+            JNS is a unique, integrated lifestyle destination in Sector 51, Gurugram,
+            bringing together sports, fitness, and community living within a single,
+            self-contained ecosystem designed for modern urban life.
           </motion.p>
         </div>
+
       </section>
 
       {/* 2. CORE BUSINESS STATS - Section header matched to Home "Ecosystem" */}
@@ -141,7 +157,7 @@ function About() {
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Our Legacy</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">The <span className="text-indigo-500">Standard</span></h2>
-          <div className="h-[2px] w-20 bg-indigo-600 mt-4"></div>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
           <p className="text-gray-400 text-sm mt-4">Trusted quality and professional hospitality since 2020.</p>
         </div>
 
@@ -165,12 +181,12 @@ function About() {
       </section>
 
       {/* 3. CONTACT & FORM SECTION */}
-      <section className="pb-20 max-w-7xl flex flex-col text-center">
+      <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Neighborhood</span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">Connect <span className="text-indigo-500">Elite</span></h2>
-          <div className="h-[2px] w-20 bg-indigo-600 mt-4"></div>
-          <p className="text-gray-400 text-sm mt-4">Reach out to us for premium accommodations. Highly rated for our cleanliness and dedicated facilities for women and girl students in the heart of Gurgaon.</p>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">Connect <span className="text-indigo-500">JNS</span></h2>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">Reach out to JNS to explore an integrated lifestyle experience built around fitness, sports, and a like-minded community in Sector 51, Gurugram.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -186,7 +202,7 @@ function About() {
                 Reach Out
               </span>
               <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase mt-2 mb-10">
-                Connect <span className="text-indigo-500">Elite</span>
+                Connect <span className="text-indigo-500">JNS</span>
               </h2>
 
               {/* Contact List aligned to start */}
@@ -305,15 +321,14 @@ function About() {
       </section>
 
       {/* 4. MAP SECTION */}
-      <section className="pb-20 max-w-7xl flex flex-col text-center">
+      <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Location Guide</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">Find <span className="text-indigo-500">Us</span></h2>
-          <div className="h-[2px] w-20 bg-indigo-600 mt-4"></div>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
           <p className="text-gray-400 text-sm mt-4">
             Located in the prime residential hub of <strong>Sector 51, Gurgaon</strong>.
-            JNS Elite Stay offers the perfect balance of peaceful living with immediate access to
-            major corporate offices, retail centers, and our flagship fitness facilities.
+            JNS is a thoughtfully designed lifestyle destination that brings together fitness, sports, and community living in one well-connected environment.
           </p>
         </div>
 

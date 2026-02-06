@@ -42,7 +42,7 @@ function Home() {
   return (
     <div className="bg-zinc-950 text-white px-0 font-montserrat">
       {/* 1. HERO SECTION */}
-      <section className="relative max-h-[40vh] md:max-h-[80vh] md:h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
+      <section className="relative min-h-[35vh] md:min-h-[65vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <video
             ref={videoRef}

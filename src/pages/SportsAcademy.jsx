@@ -158,9 +158,8 @@ function SportsAcademy() {
   return (
     <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
       <Toaster position="top-center" reverseOrder={false} />
-
       {/* HERO SECTION */}
-      <section className="relative min-h-[30vh] md:h-[70vh] flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-2 md:mt-4 px-4">
+      <section className="relative min-h-[35vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl px-4">
         <div className="absolute inset-0">
           <img
             src={badmintonHero}
@@ -175,7 +174,7 @@ function SportsAcademy() {
           animate={{ opacity: 1, y: 0 }}
           className="relative z-10 text-center max-w-4xl"
         >
-          <span className="text-indigo-400 font-bold tracking-[0.3em] uppercase text-xs block mb-4">
+          <span className="text-indigo-300 font-bold tracking-[0.3em] uppercase text-xs block mb-4">
             11 Years of Excellence
           </span>
 
@@ -198,7 +197,7 @@ function SportsAcademy() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="py-8 md:py-16 lg:py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        className="pt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
       >
         <FeatureCard
           icon={<FaAward className="text-3xl" />}
@@ -223,7 +222,7 @@ function SportsAcademy() {
       </motion.section>
 
       {/* CONNECT SECTION */}
-      <section className="max-w-7xl pb-20 flex flex-col text-center">
+      <section className="max-w-7xl pt-20 flex flex-col text-center">
         <div className="mb-4 md:mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Admission Open</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">

@@ -93,7 +93,7 @@ function Coliving() {
 
   return (
     <div className="bg-zinc-950 text-white font-montserrat">
-      <Toaster position="top-center" />
+      <Toaster position="top-center" reverseOrder={false} />
 
       {/* HERO */}
       <section className="relative min-h-[45vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden rounded-3xl mt-4">
@@ -427,7 +427,7 @@ function Coliving() {
                 {loading ? (
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 ) : (
-                  "Check Availability"
+                  "Submit Inquiry"
                 )}
               </motion.button>
             </form>

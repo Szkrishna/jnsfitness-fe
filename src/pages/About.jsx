@@ -152,30 +152,38 @@ function About() {
 
       </section>
 
-      {/* CORE BUSINESS STATS - Section header matched to Home "Ecosystem" */}
+      {/* CORE ECOSYSTEM STATS */}
       <section className="pt-20 max-w-7xl mx-auto text-center">
         <div className="mb-8">
-          <span className="font-bold tracking-widest uppercase text-xs">Our Legacy</span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">The <span className="text-indigo-500">Standard</span></h2>
+          <span className="font-bold tracking-widest uppercase text-xs">
+            Our Ecosystem
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
+            The <span className="text-indigo-500">JNS Standard</span>
+          </h2>
           <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
-          <p className="text-gray-400 text-sm mt-4">Trusted quality and professional hospitality since 2020.</p>
+          <p className="text-gray-400 text-sm mt-4">
+            A unified ecosystem for sports excellence, fitness performance, and modern living.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <ValueCard
             icon={<FaHistory className="text-indigo-400" />}
-            title="6 Years"
-            desc="Over six years of trusted business presence in the Gurugram community."
+            title="10+ Years"
+            desc="A decade of experience building champions in sports, fitness, and structured training."
           />
+
           <ValueCard
             icon={<FaStar className="text-yellow-500" />}
-            title="4.6 Rating"
-            desc="Backed by 100+ positive ratings highlighting our service quality."
+            title="4.6+ Rating"
+            desc="Trusted by athletes, members, and residents for consistency, quality, and professionalism."
           />
+
           <ValueCard
             icon={<FaHotel className="text-indigo-400" />}
-            title="Clean Rooms"
-            desc="Consistently recognized for superior hygiene and well-maintained AC rooms."
+            title="Integrated Facilities"
+            desc="Badminton courts, fitness studio, and premium co-living spaces under one ecosystem."
           />
         </div>
       </section>

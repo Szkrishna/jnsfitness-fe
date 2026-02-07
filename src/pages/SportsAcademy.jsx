@@ -158,6 +158,7 @@ function SportsAcademy() {
   return (
     <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
       <Toaster position="top-center" reverseOrder={false} />
+      
       {/* HERO SECTION */}
       <section className="relative min-h-[35vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl px-4">
         <div className="absolute inset-0">

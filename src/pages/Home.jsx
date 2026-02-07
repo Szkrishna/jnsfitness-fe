@@ -43,7 +43,7 @@ function Home() {
 
   return (
     <div className="bg-zinc-950 text-white px-0 font-montserrat">
-      {/* 1. HERO SECTION */}
+      {/* HERO SECTION */}
       <section className="relative min-h-[35vh] md:min-h-[65vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <video
@@ -88,7 +88,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 2. THE ECOSYSTEM SECTION */}
+      {/* THE ECOSYSTEM SECTION */}
       <section className="pt-20 max-w-7xl mx-auto text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Our Core</span>
@@ -103,7 +103,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 3. BROWSE ACCOMMODATION SECTION */}
+      {/* BROWSE ACCOMMODATION SECTION */}
       <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Premium Stays</span>
@@ -145,7 +145,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 4. CUSTOMER REVIEWS SECTION */}
+      {/* CUSTOMER REVIEWS SECTION */}
       <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Testimonials</span>
@@ -221,7 +221,7 @@ function Home() {
       </section> */}
 
 
-      {/* 5. JNS MEMORIES SECTION */}
+      {/* JNS MEMORIES SECTION */}
       <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Life at JNS</span>

@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaMapMarkerAlt, FaUserCheck, FaPeopleArrows, FaSnowflake, FaPhone, FaDumbbell, FaClock, FaHeartbeat, FaRunning, FaBolt, FaUserNinja, FaLayerGroup, FaUsers } from "react-icons/fa";
+import { FaMapMarkerAlt, FaUserCheck, FaPeopleArrows, FaSnowflake, FaPhone, FaDumbbell, FaClock, FaRunning, FaBolt, FaUserNinja, FaLayerGroup } from "react-icons/fa";
 // Importing the requested background image
 import gymHero from "../assets/images/fitness_studio/gym_img2.jpeg";
 const containerVariants = {
@@ -136,7 +136,6 @@ function FitnessClub() {
           <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] z-[2]" />
         </div>
 
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -192,7 +191,6 @@ function FitnessClub() {
       </motion.section>
 
       {/* this section for further text  */}
-
       <motion.section
         variants={containerVariants}
         initial="hidden"

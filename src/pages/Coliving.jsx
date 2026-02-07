@@ -2,8 +2,30 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaMapMarkerAlt, FaPhone, FaQuoteLeft, FaCheckCircle, FaHeartbeat, FaRocket, FaUsers, FaArrowRight } from "react-icons/fa";
-import gymHero from "../assets/images/elite_stay/elite_img1.jpeg";
+import {
+  FaMapMarkerAlt,
+  FaPhone,
+  FaCheckCircle,
+  FaHeartbeat,
+  FaRocket,
+  FaUsers,
+  FaHistory,
+  FaStar,
+  FaHotel 
+} from "react-icons/fa";
+
+// Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+
+// Images
+import heroImg from "../assets/images/elite/elite_img1.jpeg";
+import eliteImg from "../assets/images/elite/elite_img1.jpeg";
+import roostImg from "../assets/images/roost/roost_img8.jpeg";
+import sunriseImg from "../assets/images/sunrise/sunrise_img1.jpeg";
+
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -11,13 +33,33 @@ const itemVariants = {
 
 function ContactInfo({ icon, title, detail }) {
   return (
-    <div className="flex items-center justify-start gap-4">
-      <div className="w-12 h-12 shrink-0 rounded-xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl">
+    <div className="flex items-center gap-4">
+      <div className="w-12 h-12 rounded-xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl">
         {icon}
       </div>
-      <div className="flex flex-col text-left">
-        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">{title}</h4>
-        <p className="text-gray-200 font-bold text-lg leading-tight">{detail}</p>
+      <div>
+        <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+          {title}
+        </h4>
+        <p className="text-gray-200 font-bold text-lg">{detail}</p>
+      </div>
+    </div>
+  );
+}
+
+function PropertyCard({ name, image }) {
+  return (
+    <div className="group relative aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+      <img
+        src={image}
+        alt={name}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute bottom-0 p-6 w-full text-center">
+        <h3 className="text-xl font-black tracking-widest uppercase text-white">
+          {name}
+        </h3>
       </div>
     </div>
   );
@@ -29,12 +71,11 @@ function Coliving() {
     name: "",
     phone: "",
     interest: "Coliving Inquiry",
-    message: ""
+    message: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,248 +84,142 @@ function Coliving() {
       return;
     }
 
-    const inquiryPromise = new Promise((resolve, reject) => {
-      (async () => {
-        try {
-          setLoading(true);
-          const response = await fetch("https://jnsfitness-be.onrender.com/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData)
-          });
-
-          if (!response.ok) throw new Error();
-
-          const message = `*New Coliving Inquiry*\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Message:* ${formData.message}`;
-          setTimeout(() => { window.open(`https://wa.me/8460479473?text=${encodeURIComponent(message)}`, "_blank"); }, 1200);
-          setFormData({ name: "", phone: "", interest: "Coliving Inquiry", message: "" });
-          resolve();
-        } catch (err) {
-          reject("Submission failed.");
-        } finally {
-          setLoading(false);
-        }
-      })();
-    });
-
-    toast.promise(inquiryPromise, {
-      loading: 'Sending...',
-      success: 'Opening WhatsApp...',
-      error: 'Error occurred.',
-    }, {
-      style: { borderRadius: '12px', background: '#1a1a1a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' },
-    });
+    const message = `*New Coliving Inquiry*\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Message:* ${formData.message}`;
+    window.open(
+      `https://wa.me/8460479473?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
   };
 
   return (
-    <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
-      <Toaster position="top-center" reverseOrder={false} />
+    <div className="bg-zinc-950 text-white font-montserrat">
+      <Toaster position="top-center" />
 
-      {/* HERO SECTION - OUR STORY */}
-      {/* <section className="relative w-full pt-20 pb-12 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] z-0" />
-        
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <motion.span 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }}
-            className="inline-block text-xs uppercase tracking-[0.4em] text-indigo-500 mb-6 font-black"
-          >
-            3 Years of Redefining Living
-          </motion.span>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-8 uppercase"
-          >
-            Born from Experience, <br />
-            <span className="text-indigo-600">Built for You.</span>
-          </motion.h1>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left mt-16 items-center">
-            <motion.div variants={itemVariants} initial="hidden" animate="visible" className="space-y-6">
-              <p className="text-xl md:text-2xl text-gray-300 font-medium leading-relaxed">
-                Three years ago, our founder moved to the city to pursue a career. 
-                Like many young professionals, they faced a frustrating reality: 
-                <span className="text-white underline decoration-indigo-500 underline-offset-4"> finding a place to stay was easy, but finding a place to live was nearly impossible.</span>
-              </p>
-              <p className="text-gray-400 leading-relaxed">
-                Between unresponsive landlords, hidden maintenance costs, cramped spaces, and the isolation of living in a new city, 
-                the "ideal lifestyle" felt out of reach. JNS Co-living was created to bridge that gap.
-              </p>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }} 
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white/5 border border-white/10 p-10 rounded-[3rem] relative"
-            >
-              <FaQuoteLeft className="absolute top-8 left-8 text-4xl text-indigo-500/20" />
-              <h3 className="text-2xl font-black uppercase tracking-tight mb-4 pt-4">The Vision</h3>
-              <p className="text-gray-300 leading-relaxed font-medium">
-                We didn't just want to provide four walls and a bed. We wanted to build a sanctuary 
-                where your living space works as hard as you do. By integrating our 10-year legacy 
-                in sports excellence, we created a space where fitness, community, and comfort coexist.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="relative min-h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
-        
-        <div className="absolute inset-0 z-0">
+      {/* HERO */}
+      <section className="relative min-h-[45vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden rounded-3xl mt-4">
+        <div className="absolute inset-0">
           <img
-            src={gymHero} 
-            alt="JNS Living Background"
-            className="w-full h-full object-cover object-center opacity-35 scale-105"
+            src={heroImg}
+            className="w-full h-full object-cover opacity-40 scale-105"
+            alt="Coliving"
           />
-
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/90 via-zinc-950/60 to-zinc-950 z-[1]" />
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] z-[2]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950" />
         </div>
 
-        {/* Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center max-w-4xl"
-        >
-          <span className="text-indigo-400 font-black tracking-[0.5em] uppercase text-xs block mb-2 mt-8">
-            3 Years of Redefining Living
+        {/* CONTENT */}
+        <div className="relative z-10 text-center px-6 max-w-4xl">
+          <span className="text-indigo-400 font-black tracking-[0.5em] uppercase text-xs block mb-4">
+            Modern Coliving
           </span>
 
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-4 uppercase">
-            Born from Experience,
-            <span className="text-indigo-500">Built for You.</span>
-          </h1>
-
-          <p className="text-gray-300 text-sm sm:text-lg max-w-2xl mx-auto font-medium mb-4">
-            Three years ago, our founder moved to the city to pursue a career. Like many young professionals, they faced a frustrating reality: finding a place to stay was easy, but finding a place to live was nearly impossible.
-            Between unresponsive landlords, hidden maintenance costs, cramped spaces, and the isolation of living in a new city, the "ideal lifestyle" felt out of reach. There was a clear gap between basic accommodation and a home that actually supported a busy, modern life.
-            JNS Co-living was created to bridge that gap.
-          </p>
-        </motion.div>
-      </section>
-
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="pt-12 md:pt-16 lg:pt-20 pb-6 md:pb-8"
-      >
-        <div className="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-          {/* Text */}
-          <motion.div variants={itemVariants} className="space-y-6">
-            <span className="text-indigo-500 font-black uppercase tracking-[0.35em] text-xs">
-              The Vision
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-8xl font-black tracking-tighter leading-none"
+          >
+            <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent block">
+              JNS Coliving.
             </span>
 
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
-              More Than <span className="text-indigo-600">Just Living</span>
-            </h2>
+            <span className="block text-white text-2xl md:text-4xl font-extrabold tracking-widest mt-3 md:mt-4">
+              Born from Experience, Built for You.
+            </span>
+          </motion.h1>
 
-            <p className="text-gray-300 text-lg font-medium leading-relaxed">
-              We didn’t want to provide just four walls and a bed.
-              We wanted to design a sanctuary where your space works as hard as you do.
-            </p>
-
-            <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-              By integrating our decade-long legacy in sports excellence,
-              JNS Co-Living blends comfort, community, and performance —
-              creating a lifestyle built for ambition, balance, and growth.
-            </p>
-          </motion.div>
-
-          {/* Visual Card */}
-          <motion.div
-            variants={itemVariants}
-            className="relative bg-white/5 border border-white/10 rounded-[3rem] p-10 backdrop-blur"
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-gray-300 text-sm sm:text-lg max-w-2xl mx-auto font-medium mt-6 leading-relaxed"
           >
-            <FaQuoteLeft className="absolute top-8 left-8 text-4xl text-indigo-500/20" />
-
-            <p className="text-gray-300 font-medium leading-relaxed pt-6">
-              “Your home should fuel your growth, not slow it down.
-              That belief drives every decision we make at JNS.”
-            </p>
-
-            <div className="mt-6 text-sm uppercase tracking-widest text-indigo-400 font-black">
-              — JNS Philosophy
-            </div>
-          </motion.div>
-
+            We didn’t just want to provide four walls and a bed. We wanted to build a sanctuary
+            where your living space works as hard as you do. By integrating our 10-year legacy
+            in sports excellence, we created a space where fitness, community, and comfort coexist.
+          </motion.p>
         </div>
-      </motion.section>
-      
+      </section>
+
+      {/* CORE BUSINESS STATS - Section header matched to Home "Ecosystem" */}
+      <section className="pt-20 max-w-7xl mx-auto text-center">
+        <div className="mb-8">
+          <span className="font-bold tracking-widest uppercase text-xs">Our Legacy</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">The <span className="text-indigo-500">Standard</span></h2>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">Trusted quality and professional hospitality since 2020.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <ValueCard
+            icon={<FaHistory className="text-indigo-400" />}
+            title="6 Years"
+            desc="Over six years of trusted business presence in the Gurugram community."
+          />
+          <ValueCard
+            icon={<FaStar className="text-yellow-500" />}
+            title="4.6 Rating"
+            desc="Backed by 100+ positive ratings highlighting our service quality."
+          />
+          <ValueCard
+            icon={<FaHotel className="text-indigo-400" />}
+            title="Clean Rooms"
+            desc="Consistently recognized for superior hygiene and well-maintained AC rooms."
+          />
+        </div>
+      </section>
+
+      {/* WHY JNS COLIVING */}
       <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="pt-6 md:pt-8 lg:pt-12 pb-20"
+        className="pt-20 max-w-7xl mx-auto"
       >
-        {/* Header */}
-        <motion.div
-          variants={itemVariants}
-          className="mb-14 text-center flex flex-col items-center"
-        >
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
-            Why <span className="text-indigo-600">JNS Co-Living</span>
-          </h2>
-
-          <p className="text-gray-400 mt-4 max-w-2xl font-medium text-center">
-            Designed from lived experience, not just business logic.
-          </p>
+        <motion.div variants={itemVariants} className="mb-14 text-center">
+          <div className="mb-8">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
+              Why JNS <span className="text-indigo-500">Coliving</span>
+            </h2>
+            <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+            <p className="text-gray-400 text-sm mt-4">Designed from lived experience, not business logic.</p>
+          </div>
         </motion.div>
 
-
-        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
             {
               icon: <FaCheckCircle />,
-              title: "The Founders’ Standard",
-              desc: "Every room, service, and amenity is something the founder personally wished for while starting out — ergonomic furniture, reliable Wi-Fi, and zero compromise on quality."
+              title: "Founder’s Standard",
+              desc: "Every detail curated from real living experience.",
             },
             {
               icon: <FaHeartbeat />,
               title: "Integrated Wellness",
-              desc: "Residents get direct access to JNS’s sports ecosystem — premium badminton courts and a professional fitness studio — because physical health drives mental performance."
+              desc: "Direct access to JNS fitness & sports ecosystem.",
             },
             {
               icon: <FaRocket />,
               title: "Zero-Hassle Living",
-              desc: "Bills, maintenance, cleaning, and security are handled seamlessly so you can focus on growth, not daily friction."
+              desc: "Bills, cleaning & maintenance included.",
             },
             {
               icon: <FaUsers />,
               title: "Built-In Community",
-              desc: "Live among professionals, athletes, and founders — not strangers. JNS is an ecosystem, not just accommodation."
+              desc: "Live among professionals & athletes.",
             }
           ].map((item, i) => (
             <motion.div
               key={i}
               variants={itemVariants}
-              className="relative bg-white/5 border border-white/10 
-                   rounded-[2.25rem] p-8 md:p-10 
-                   hover:border-indigo-500/40 transition-all"
+              className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-indigo-500/40 transition-all"
             >
-              {/* Accent */}
-              <div className="absolute left-0 top-8 bottom-8 w-1 bg-indigo-500/60 rounded-full" />
-
-              <div className="flex gap-6 pl-4">
-                <div className="text-3xl text-indigo-500 mt-1">
-                  {item.icon}
-                </div>
-
+              <div className="flex gap-5">
+                <div className="text-3xl text-indigo-500">{item.icon}</div>
                 <div>
-                  <h3 className="text-xl font-black uppercase tracking-tight mb-3">
+                  <h3 className="text-xl font-black uppercase mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed font-medium">
-                    {item.desc}
-                  </p>
+                  <p className="text-gray-400 text-sm">{item.desc}</p>
                 </div>
               </div>
             </motion.div>
@@ -292,42 +227,200 @@ function Coliving() {
         </div>
       </motion.section>
 
-      {/* CALL TO ACTION / ENQUIRE */}
-      <section className="mt-12 bg-indigo-600/5 rounded-[3rem] border border-indigo-500/20 overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-          <div className="lg:col-span-5 p-8 md:p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/10">
-            <h2 className="text-4xl font-black uppercase tracking-tighter mb-6 leading-none">
-              Skip the <br /><span className="text-indigo-500">Struggle.</span>
-            </h2>
-            <p className="text-gray-400 mb-10 font-medium">
-              Join hundreds of professionals who have moved straight into a lifestyle of convenience and growth.
-            </p>
-            <div className="space-y-6">
-              <ContactInfo icon={<FaMapMarkerAlt />} title="Region" detail="Premium Localities, Gurgaon" />
-              <ContactInfo icon={<FaPhone />} title="Enquiry" detail="+91 84604 79473" />
-            </div>
-          </div>
+      {/* BROWSE ACCOMMODATION SECTION */}
+      <section className="pt-20 max-w-7xl flex flex-col text-center">
+        <div className="mb-8">
+          <span className="font-bold tracking-widest uppercase text-xs">Premium Stays</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
+            Browse <span className="text-indigo-500">Accommodation</span>
+          </h2>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">Luxury living spaces curated for your comfort and lifestyle.</p>
+        </div>
 
-          <div className="lg:col-span-7 p-8 md:p-12">
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-6">Request a Site Visit</h3>
+        <div className="relative group/swiper-container px-44">
+          <button className="swiper-prev-button absolute left-2 md:left-[2px] top-1/2 -translate-y-1/2 z-20 w-20 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">←</button>
+          <button className="swiper-next-button absolute right-2 md:right-[2px] top-1/2 -translate-y-1/2 z-20 w-20 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">→</button>
+
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            loop={true}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            coverflowEffect={{ rotate: 35, stretch: 0, depth: 200, modifier: 1, slideShadows: true }}
+            navigation={{ nextEl: ".swiper-next-button", prevEl: ".swiper-prev-button" }}
+            modules={[EffectCoverflow, Navigation, Autoplay]}
+            className="w-full"
+          >
+            {[
+              { name: "Elite Stay", img: eliteImg },
+              { name: "Roost", img: roostImg },
+              { name: "Sunrise", img: sunriseImg },
+              { name: "Elite Stay", img: eliteImg },
+              { name: "Roost", img: roostImg }
+            ].map((item, index) => (
+              <SwiperSlide key={index} className="max-w-[280px] md:max-w-[320px]">
+                <PropertyCard name={item.name} image={item.img} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+
+      {/* ENQUIRE SECTION – COLIVING */}
+      <section className="pt-20 max-w-7xl mx-auto">
+        <div className="mb-8">
+          <span className="font-bold tracking-widest uppercase text-xs">
+            Enquire Now
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
+            Find Your <span className="text-indigo-500">Perfect Stay</span>
+          </h2>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">
+            Explore premium coliving spaces designed for comfort, community, and
+            convenience.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* LEFT INFO */}
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 
+                 p-8 md:p-12 rounded-[2.5rem] flex flex-col justify-between"
+          >
+            <div className="text-left">
+              <span className="text-indigo-500 font-bold tracking-widest uppercase text-[10px] block mb-2">
+                Locations
+              </span>
+              <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase mb-10">
+                JNS <span className="text-indigo-500">Coliving</span>
+              </h2>
+
+              <div className="space-y-8">
+                <ContactInfo
+                  icon={<FaMapMarkerAlt />}
+                  title="Region"
+                  detail="Prime Localities, Gurgaon"
+                />
+                <ContactInfo
+                  icon={<FaPhone />}
+                  title="Enquiry"
+                  detail="+91 84604 79473"
+                />
+                <ContactInfo
+                  icon={<FaUsers />}
+                  title="Residents"
+                  detail="Unisex Accommodations (Facilities via Add-on)"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT FORM */}
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="lg:col-span-6 bg-white/5 backdrop-blur-lg border border-white/10 
+              p-8 md:p-12 rounded-[2.5rem] shadow-2xl flex flex-col justify-center"
+          >
+            <h2 className="text-3xl font-black tracking-tight uppercase mb-6">
+              Enquire <span className="text-indigo-500">Now</span>
+            </h2>
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input required name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" className="w-full bg-zinc-950 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-indigo-500 outline-none transition-all" />
-                <input required pattern="[0-9]{10}" name="phone" value={formData.phone} onChange={handleChange} placeholder="10-digit Phone" className="w-full bg-zinc-950 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-indigo-500 outline-none transition-all" />
+                <input
+                  required
+                  minLength="3"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Full Name"
+                  className="w-full bg-zinc-950/50 border border-white/10 rounded-xl 
+                    px-5 py-3 text-sm text-white focus:border-indigo-500 
+                    outline-none transition-all"
+                />
+                <input
+                  required
+                  pattern="[0-9]{10}"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  type="tel"
+                  placeholder="Phone (10-digit)"
+                  className="w-full bg-zinc-950/50 border border-white/10 rounded-xl 
+                    px-5 py-3 text-sm text-white focus:border-indigo-500 
+                    outline-none transition-all"
+                />
               </div>
-              <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Which location are you interested in?" rows="3" className="w-full bg-zinc-950 border border-white/10 rounded-2xl px-6 py-4 text-sm resize-none focus:border-indigo-500 outline-none" />
+
+              {/* ACCOMMODATION SELECT */}
+              <select
+                required
+                name="interest"
+                value={formData.interest}
+                onChange={handleChange}
+                className="w-full bg-zinc-950/50 border border-white/10 rounded-xl 
+                  px-5 py-3 text-white text-sm appearance-none outline-none 
+                  cursor-pointer focus:border-indigo-500 transition-all"
+              >
+                <option value="JNS Accommodation">JNS Accommodation</option>
+                <option value="Elite Stay">Elite Stay</option>
+                <option value="Roost">Roost</option>
+                <option value="Sunrise">Sunrise</option>
+              </select>
+
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Preferred move-in date, or any questions..."
+                rows="2"
+                className="w-full bg-zinc-950/40 border border-white/10 rounded-xl 
+                  px-5 py-3 text-sm text-white resize-none outline-none 
+                  focus:border-indigo-500 transition-all"
+              />
+
               <motion.button
                 type="submit"
                 disabled={loading}
                 whileHover={{ scale: 1.01 }}
-                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-2xl uppercase tracking-[0.2em] text-xs flex justify-center items-center gap-3"
+                whileTap={{ scale: 0.99 }}
+                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white 
+                  font-bold py-3 rounded-xl uppercase tracking-[0.2em] 
+                  text-xs transition-all shadow-lg shadow-indigo-600/20 
+                  flex justify-center items-center gap-2"
               >
-                {loading ? "Sending..." : "Check Availability"} <FaArrowRight />
+                {loading ? (
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  "Check Availability"
+                )}
               </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </section>
+    </div>
+  );
+}
+
+function ValueCard({ icon, title, desc }) {
+  return (
+    <div className="bg-white/5 border border-white/10 p-8 rounded-[2rem] flex flex-col items-center text-center">
+      <div className="text-4xl mb-4">{icon}</div>
+      <h3 className="text-xl font-black mb-2 uppercase tracking-tight">{title}</h3>
+      <p className="text-gray-400 text-sm">{desc}</p>
     </div>
   );
 }

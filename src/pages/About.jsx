@@ -100,7 +100,7 @@ function About() {
     <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
       <Toaster position="top-center" reverseOrder={false} />
 
-      {/* 1. HERO SECTION - Uses the exact same rounded corners and gradient logic as Home */}
+      {/* HERO SECTION */}
       <section className="relative min-h-[55vh] md:min-h-[60vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
@@ -152,7 +152,7 @@ function About() {
 
       </section>
 
-      {/* 2. CORE BUSINESS STATS - Section header matched to Home "Ecosystem" */}
+      {/* CORE BUSINESS STATS - Section header matched to Home "Ecosystem" */}
       <section className="pt-20 max-w-7xl mx-auto text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Our Legacy</span>
@@ -180,7 +180,7 @@ function About() {
         </div>
       </section>
 
-      {/* 3. CONTACT & FORM SECTION */}
+      {/* CONTACT & FORM SECTION */}
       <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Neighborhood</span>
@@ -211,8 +211,8 @@ function About() {
                 <ContactInfo icon={<FaPhone />} title="Phone" detail="08460479473" />
                 <ContactInfo
                   icon={<FaUsers />}
-                  title="Residents"
-                  detail="Unisex Accommodations (Facilities via Add-on)"
+                  title="Community"
+                  detail="Professionals, Athletes & Fitness Enthusiasts"
                 />
               </div>
             </div>
@@ -320,7 +320,7 @@ function About() {
         </div>
       </section>
 
-      {/* 4. MAP SECTION */}
+      {/* MAP SECTION */}
       <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Location Guide</span>

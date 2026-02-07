@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 
 // Swiper Imports
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Navigation, Autoplay, Pagination, Mousewheel } from "swiper/modules";
+import { Navigation, Autoplay, Pagination, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
@@ -17,9 +17,6 @@ import badmintonImg from '../assets/images/academy/badminton_1.avif';
 import colivingImg from '../assets/images/roost/roost_img9.jpeg';
 
 // Import Accommodation Images
-import eliteImg from "../assets/images/elite/elite_img1.jpeg";
-import roostImg from "../assets/images/roost/roost_img8.jpeg";
-import sunriseImg from "../assets/images/sunrise/sunrise_img1.jpeg";
 import { jnsMemoriesMedia } from "../utils/jnsMemoriesMedia";
 
 
@@ -44,7 +41,7 @@ function Home() {
   return (
     <div className="bg-zinc-950 text-white px-0 font-montserrat">
       {/* HERO SECTION */}
-      <section className="relative min-h-[35vh] md:min-h-[65vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
+      <section className="relative min-h-[35vh] max-h-[45vh] md:min-h-[65vh] md:max-h-[75vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <video
             ref={videoRef}

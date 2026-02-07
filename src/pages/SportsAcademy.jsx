@@ -160,7 +160,7 @@ function SportsAcademy() {
       <Toaster position="top-center" reverseOrder={false} />
       
       {/* HERO SECTION */}
-      <section className="relative min-h-[35vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl px-4">
+      <section className="relative min-h-[35vh] max-h-[45vh] md:min-h-[65vh] md:max-h-[75vh] flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl px-4">
         <div className="absolute inset-0">
           <img
             src={badmintonHero}

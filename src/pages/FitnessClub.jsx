@@ -124,7 +124,7 @@ function FitnessClub() {
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* HERO SECTION WITH BACKGROUND IMAGE */}
-      <section className="relative min-h-[40vh] md:min-h-[65vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
+      <section className="relative min-h-[40vh] max-h-[50vh] md:min-h-[65vh] md:max-h-[75vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
         <div className="absolute inset-0 z-0">
           <img
             src={gymHero}

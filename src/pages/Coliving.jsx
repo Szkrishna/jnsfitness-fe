@@ -137,7 +137,7 @@ function Coliving() {
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* HERO */}
-      <section className="relative min-h-[45vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden rounded-3xl mt-4">
+      <section className="relative min-h-[45vh] max-h-[55vh] md:min-h-[65vh] md:max-h-[75vh] flex items-center justify-center overflow-hidden rounded-3xl mt-4">
         <div className="absolute inset-0">
           <img
             src={heroImg}

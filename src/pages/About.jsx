@@ -101,7 +101,7 @@ function About() {
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* HERO SECTION */}
-      <section className="relative min-h-[55vh] md:min-h-[60vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
+      <section className="relative min-h-[55vh] max-h-[65vh] md:min-h-[65vh] md:max-h-[75vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src={jnsLogo}

@@ -11,7 +11,7 @@ import {
   FaUsers,
   FaHistory,
   FaStar,
-  FaHotel 
+  FaHotel
 } from "react-icons/fa";
 
 // Swiper
@@ -230,27 +230,47 @@ function Coliving() {
       {/* BROWSE ACCOMMODATION SECTION */}
       <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
-          <span className="font-bold tracking-widest uppercase text-xs">Premium Stays</span>
+          <span className="font-bold tracking-widest uppercase text-xs">
+            Premium Stays
+          </span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
             Browse <span className="text-indigo-500">Accommodation</span>
           </h2>
           <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
-          <p className="text-gray-400 text-sm mt-4">Luxury living spaces curated for your comfort and lifestyle.</p>
+          <p className="text-gray-400 text-sm mt-4">
+            Luxury living spaces curated for your comfort and lifestyle.
+          </p>
         </div>
 
-        <div className="relative group/swiper-container px-44">
-          <button className="swiper-prev-button absolute left-2 md:left-[2px] top-1/2 -translate-y-1/2 z-20 w-20 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">←</button>
-          <button className="swiper-next-button absolute right-2 md:right-[2px] top-1/2 -translate-y-1/2 z-20 w-20 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">→</button>
+        <div className="relative group/swiper-container px-4 sm:px-8 md:px-20 lg:px-44">
+          <button className="swiper-prev-button absolute left-2 md:left-[2px] top-1/2 -translate-y-1/2 z-20 w-16 h-10 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">
+            ←
+          </button>
+          <button className="swiper-next-button absolute right-2 md:right-[2px] top-1/2 -translate-y-1/2 z-20 w-16 h-10 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">
+            →
+          </button>
 
           <Swiper
-            effect={"coverflow"}
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={"auto"}
-            loop={true}
+            effect="coverflow"
+            grabCursor
+            centeredSlides
+            loop
             autoplay={{ delay: 3000, disableOnInteraction: false }}
-            coverflowEffect={{ rotate: 35, stretch: 0, depth: 200, modifier: 1, slideShadows: true }}
-            navigation={{ nextEl: ".swiper-next-button", prevEl: ".swiper-prev-button" }}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: "auto" },
+            }}
+            coverflowEffect={{
+              rotate: 20,
+              stretch: 0,
+              depth: 120,
+              modifier: 1,
+              slideShadows: false,
+            }}
+            navigation={{
+              nextEl: ".swiper-next-button",
+              prevEl: ".swiper-prev-button",
+            }}
             modules={[EffectCoverflow, Navigation, Autoplay]}
             className="w-full"
           >
@@ -259,9 +279,12 @@ function Coliving() {
               { name: "Roost", img: roostImg },
               { name: "Sunrise", img: sunriseImg },
               { name: "Elite Stay", img: eliteImg },
-              { name: "Roost", img: roostImg }
+              { name: "Roost", img: roostImg },
             ].map((item, index) => (
-              <SwiperSlide key={index} className="max-w-[280px] md:max-w-[320px]">
+              <SwiperSlide
+                key={index}
+                className="w-[80vw] sm:w-[60vw] md:max-w-[320px]"
+              >
                 <PropertyCard name={item.name} image={item.img} />
               </SwiperSlide>
             ))}

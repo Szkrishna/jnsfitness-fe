@@ -70,7 +70,7 @@ function Coliving() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    interest: "Coliving Inquiry",
+    interest: "",
     message: "",
   });
 
@@ -84,11 +84,52 @@ function Coliving() {
       return;
     }
 
-    const message = `*New Coliving Inquiry*\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Message:* ${formData.message}`;
-    window.open(
-      `https://wa.me/8460479473?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
+    const inquiryPromise = new Promise((resolve, reject) => {
+      (async () => {
+        try {
+          setLoading(true);
+          const response = await fetch("https://jnsfitness-be.onrender.com/api/colivingAddPage", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+          });
+
+          if (!response.ok) {
+            reject("Submission failed. Please try again.");
+            return;
+          }
+
+          // const message = buildWhatsAppMessage(formData);
+          // const whatsappNumber = "8460479473";
+          // const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+          const message = `*New Coliving Inquiry*\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Message:* ${formData.message}`;
+          window.open(
+            `https://wa.me/8460479473?text=${encodeURIComponent(message)}`,
+            "_blank"
+          );
+
+
+          // setTimeout(() => { window.open(whatsappURL, "_blank"); }, 1200);
+          setFormData({ name: "", phone: "", interest: "GYM", message: "" });
+          resolve("Success");
+        } catch (err) {
+          reject("Failed to connect. Please try again later.");
+        } finally {
+          setLoading(false);
+        }
+      })();
+    });
+
+    toast.promise(inquiryPromise, {
+      loading: 'Sending your inquiry...',
+      success: 'Inquiry sent! Opening WhatsApp...',
+      error: (err) => `${err}`,
+    }, {
+      style: { borderRadius: '12px', background: '#1a1a1a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', fontSize: '14px' },
+      success: { duration: 4000, iconTheme: { primary: '#4f46e5', secondary: '#fff' } },
+      error: { duration: 5000, iconTheme: { primary: '#ef4444', secondary: '#fff' } },
+    });
+    
   };
 
   return (

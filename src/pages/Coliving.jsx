@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaMapMarkerAlt, FaPhone, FaQuoteLeft, FaCheckCircle, FaHeartbeat, FaRocket, FaUsers, FaArrowRight } from "react-icons/fa";
-
+import gymHero from "../assets/images/elite_stay/elite_img1.jpeg";
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -77,11 +77,11 @@ function Coliving() {
   };
 
   return (
-    <div className="bg-zinc-950 text-white px-6 md:px-16 lg:px-24 font-montserrat pb-20">
-      <Toaster position="top-center" />
+    <div className="bg-zinc-950 text-white px-0 lg:px-0 font-montserrat">
+      <Toaster position="top-center" reverseOrder={false} />
 
       {/* HERO SECTION - OUR STORY */}
-      <section className="relative w-full pt-20 pb-12 overflow-hidden">
+      {/* <section className="relative w-full pt-20 pb-12 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] z-0" />
         
         <div className="relative z-10 max-w-5xl mx-auto text-center">
@@ -130,47 +130,167 @@ function Coliving() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* WHY WE ARE DIFFERENT GRID */}
-      <section className="py-24 border-t border-white/5">
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
-            Why We Are <span className="text-indigo-600">Different</span>
-          </h2>
+      <section className="relative min-h-[70vh] w-full flex items-center justify-center overflow-hidden bg-zinc-950 rounded-3xl shadow-2xl mt-4">
+        
+        <div className="absolute inset-0 z-0">
+          <img
+            src={gymHero} 
+            alt="JNS Living Background"
+            className="w-full h-full object-cover object-center opacity-35 scale-105"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/90 via-zinc-950/60 to-zinc-950 z-[1]" />
+          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] z-[2]" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[
-            { 
-              icon: <FaCheckCircle />, 
-              title: "The Founders' Standard", 
-              desc: "We only offer spaces we would live in ourselves. From high-speed Wi-Fi that never drops during a meeting to ergonomic furniture, every detail is inspired by the founder's own journey." 
-            },
-            { 
-              icon: <FaHeartbeat />, 
-              title: "Integrated Wellness", 
-              desc: "Unlike traditional PGs, JNS residents have doorstep access to our Premium Badminton Academy and 3,600 sq. ft. Fitness Studio. We believe a healthy body leads to a productive life." 
-            },
-            { 
-              icon: <FaRocket />, 
-              title: "Zero-Hassle Living", 
-              desc: "We took the 'difficulties' our founder faced—utility bills, cleaning, security—and automated them. You focus on your career; we’ll handle the rest." 
-            },
-            { 
-              icon: <FaUsers />, 
-              title: "A Built-in Community", 
-              desc: "No more 'new city' loneliness. At JNS, you are part of an ecosystem of athletes, professionals, and dreamers working towards growth." 
-            }
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white/5 border border-white/10 p-8 rounded-[2rem] hover:border-indigo-500/40 transition-all group">
-              <div className="text-indigo-500 text-3xl mb-6 group-hover:scale-110 transition-transform origin-left">{item.icon}</div>
-              <h3 className="text-xl font-black uppercase tracking-tight mb-3">{item.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed font-medium">{item.desc}</p>
+        {/* Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10 text-center max-w-4xl"
+        >
+          <span className="text-indigo-400 font-black tracking-[0.5em] uppercase text-xs block mb-2 mt-8">
+            3 Years of Redefining Living
+          </span>
+
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-4 uppercase">
+            Born from Experience,
+            <span className="text-indigo-500">Built for You.</span>
+          </h1>
+
+          <p className="text-gray-300 text-sm sm:text-lg max-w-2xl mx-auto font-medium mb-4">
+            Three years ago, our founder moved to the city to pursue a career. Like many young professionals, they faced a frustrating reality: finding a place to stay was easy, but finding a place to live was nearly impossible.
+            Between unresponsive landlords, hidden maintenance costs, cramped spaces, and the isolation of living in a new city, the "ideal lifestyle" felt out of reach. There was a clear gap between basic accommodation and a home that actually supported a busy, modern life.
+            JNS Co-living was created to bridge that gap.
+          </p>
+        </motion.div>
+      </section>
+
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="pt-12 md:pt-16 lg:pt-20 pb-6 md:pb-8"
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+          {/* Text */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <span className="text-indigo-500 font-black uppercase tracking-[0.35em] text-xs">
+              The Vision
+            </span>
+
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
+              More Than <span className="text-indigo-600">Just Living</span>
+            </h2>
+
+            <p className="text-gray-300 text-lg font-medium leading-relaxed">
+              We didn’t want to provide just four walls and a bed.
+              We wanted to design a sanctuary where your space works as hard as you do.
+            </p>
+
+            <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+              By integrating our decade-long legacy in sports excellence,
+              JNS Co-Living blends comfort, community, and performance —
+              creating a lifestyle built for ambition, balance, and growth.
+            </p>
+          </motion.div>
+
+          {/* Visual Card */}
+          <motion.div
+            variants={itemVariants}
+            className="relative bg-white/5 border border-white/10 rounded-[3rem] p-10 backdrop-blur"
+          >
+            <FaQuoteLeft className="absolute top-8 left-8 text-4xl text-indigo-500/20" />
+
+            <p className="text-gray-300 font-medium leading-relaxed pt-6">
+              “Your home should fuel your growth, not slow it down.
+              That belief drives every decision we make at JNS.”
+            </p>
+
+            <div className="mt-6 text-sm uppercase tracking-widest text-indigo-400 font-black">
+              — JNS Philosophy
             </div>
+          </motion.div>
+
+        </div>
+      </motion.section>
+      
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="pt-6 md:pt-8 lg:pt-12 pb-20"
+      >
+        {/* Header */}
+        <motion.div
+          variants={itemVariants}
+          className="mb-14 text-center flex flex-col items-center"
+        >
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
+            Why <span className="text-indigo-600">JNS Co-Living</span>
+          </h2>
+
+          <p className="text-gray-400 mt-4 max-w-2xl font-medium text-center">
+            Designed from lived experience, not just business logic.
+          </p>
+        </motion.div>
+
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            {
+              icon: <FaCheckCircle />,
+              title: "The Founders’ Standard",
+              desc: "Every room, service, and amenity is something the founder personally wished for while starting out — ergonomic furniture, reliable Wi-Fi, and zero compromise on quality."
+            },
+            {
+              icon: <FaHeartbeat />,
+              title: "Integrated Wellness",
+              desc: "Residents get direct access to JNS’s sports ecosystem — premium badminton courts and a professional fitness studio — because physical health drives mental performance."
+            },
+            {
+              icon: <FaRocket />,
+              title: "Zero-Hassle Living",
+              desc: "Bills, maintenance, cleaning, and security are handled seamlessly so you can focus on growth, not daily friction."
+            },
+            {
+              icon: <FaUsers />,
+              title: "Built-In Community",
+              desc: "Live among professionals, athletes, and founders — not strangers. JNS is an ecosystem, not just accommodation."
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              variants={itemVariants}
+              className="relative bg-white/5 border border-white/10 
+                   rounded-[2.25rem] p-8 md:p-10 
+                   hover:border-indigo-500/40 transition-all"
+            >
+              {/* Accent */}
+              <div className="absolute left-0 top-8 bottom-8 w-1 bg-indigo-500/60 rounded-full" />
+
+              <div className="flex gap-6 pl-4">
+                <div className="text-3xl text-indigo-500 mt-1">
+                  {item.icon}
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed font-medium">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* CALL TO ACTION / ENQUIRE */}
       <section className="mt-12 bg-indigo-600/5 rounded-[3rem] border border-indigo-500/20 overflow-hidden">

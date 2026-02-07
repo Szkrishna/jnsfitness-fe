@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import {
   FaMapMarkerAlt, FaPhone, FaHistory, FaHotel, FaUsers, FaStar
 } from "react-icons/fa";
-import gymBg from "../assets/images/fitness_studio/gym_img1.jpeg";
+import jnsLogo from "../assets/jns_logo.jpeg";
 
 // Leaflet Marker Fix
 import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -104,7 +104,7 @@ function About() {
       <section className="relative min-h-[55vh] md:min-h-[60vh] w-full flex items-center justify-center overflow-hidden bg-zinc-600 rounded-3xl shadow-lg">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src={gymBg}
+            src={jnsLogo}
             alt="JNS Fitness Background"
             className="absolute inset-0 w-full h-full object-cover object-center opacity-40 scale-105"
           />

@@ -5,21 +5,23 @@ import { useEffect, useRef } from "react";
 
 // Swiper Imports
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Navigation, Autoplay, Pagination } from "swiper/modules";
+import { EffectCoverflow, Navigation, Autoplay, Pagination, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import heroVideo from "../assets/videos/elite_stay/elite_video.mp4";
+import heroVideo from "../assets/videos/elite/elite_video.mp4";
 import gymImg from '../assets/images/fitness_studio/gym_img2.jpeg';
 import badmintonImg from '../assets/images/academy/badminton_1.avif';
 import colivingImg from '../assets/images/roost/roost_img9.jpeg';
 
 // Import Accommodation Images
-import eliteImg from "../assets/images/elite_stay/elite_img1.jpeg";
+import eliteImg from "../assets/images/elite/elite_img1.jpeg";
 import roostImg from "../assets/images/roost/roost_img8.jpeg";
 import sunriseImg from "../assets/images/sunrise/sunrise_img1.jpeg";
+import { jnsMemoriesMedia } from "../utils/jnsMemoriesMedia";
+
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -94,7 +96,7 @@ function Home() {
           <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
           <p className="text-gray-400 text-sm mt-4">Everything you need to reach your peak performance.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <EcoCard to="/sports-academy" title="Academy" bgImage={badmintonImg} status="Operating" statusColor="text-green-400" />
           <EcoCard to="/fitness-club" title="Fitness Club" bgImage={gymImg} status="Operating" statusColor="text-green-400" />
           <EcoCard to="/coliving" title="Co-Living" bgImage={colivingImg} status="Operating" statusColor="text-green-400" />
@@ -166,7 +168,7 @@ function Home() {
       </section>
 
       {/* 5. JNS MEMORIES SECTION */}
-      <section className="pt-20 max-w-7xl flex flex-col text-center">
+      {/* <section className="pt-20 max-w-7xl flex flex-col text-center">
         <div className="mb-8">
           <span className="font-bold tracking-widest uppercase text-xs">Life at JNS</span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
@@ -216,8 +218,76 @@ function Home() {
             </SwiperSlide>
           </Swiper>
         </div>
-      </section>
+      </section> */}
 
+
+      {/* 5. JNS MEMORIES SECTION */}
+      <section className="pt-20 max-w-7xl flex flex-col text-center">
+        <div className="mb-8">
+          <span className="font-bold tracking-widest uppercase text-xs">Life at JNS</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
+            At JNS We <span className="text-indigo-500">Create Memories</span>
+          </h2>
+          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
+          <p className="text-gray-400 text-sm mt-4">
+            Spark while you stay by enjoying events, festivals, and celebrations.
+          </p>
+        </div>
+
+        <div className="relative group/memories">
+          <Swiper
+            modules={[Navigation, Autoplay, Pagination, Mousewheel]}
+            spaceBetween={30}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            mousewheel={{
+              forceToAxis: true,
+              sensitivity: 1,
+              releaseOnEdges: true,
+            }}
+            loop
+            className="pb-16"
+          >
+            {jnsMemoriesMedia.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+
+                  {/* IMAGE */}
+                  {item.type === "image" && (
+                    <img
+                      loading="lazy"
+                      src={item.src}
+                      alt="JNS Memory"
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                    />
+                  )}
+
+                  {/* VIDEO */}
+                  {item.type === "video" && (
+                    <video
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                    >
+                      <source src={item.src} />
+                    </video>
+                  )}
+
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition" />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
     </div>
   );
 }
@@ -231,7 +301,7 @@ function EcoCard({ to, title, bgImage, status, statusColor }) {
           <img src={bgImage} alt={title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         </div>
-        
+
         <div className="relative z-10 p-8 flex flex-col justify-between items-start text-left min-h-[350px]">
           <div>
             <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-zinc-950/60 border border-white/20 rounded-full ${statusColor}`}>
@@ -244,10 +314,10 @@ function EcoCard({ to, title, bgImage, status, statusColor }) {
 
           {/* New Bottom Navigation Button */}
           <div className="w-full flex justify-end">
-             <div className="flex items-center gap-2 px-4 py-2 bg-indigo-600/20 backdrop-blur-sm border border-indigo-500/50 rounded-full group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                <span className="text-xs font-bold uppercase tracking-wider">Explore More</span>
-                <span className="text-lg leading-none transition-transform group-hover:translate-x-1">→</span>
-             </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-indigo-600/20 backdrop-blur-sm border border-indigo-500/50 rounded-full group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+              <span className="text-xs font-bold uppercase tracking-wider">Explore More</span>
+              <span className="text-lg leading-none transition-transform group-hover:translate-x-1">→</span>
+            </div>
           </div>
         </div>
       </NavLink>

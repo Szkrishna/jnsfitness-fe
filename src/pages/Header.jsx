@@ -115,7 +115,7 @@ function Header() {
             Badminton
           </NavLink>
           <NavLink to="/fitness-club" className={linkClasses} onClick={closeMenu}>
-            Fitness
+            Gym
           </NavLink>
           <NavLink to="/coliving" className={linkClasses} onClick={closeMenu}>
             Coliving

@@ -103,45 +103,60 @@ function Home() {
         </div>
       </section>
 
-      {/* BROWSE ACCOMMODATION SECTION */}
-      <section className="pt-20 max-w-7xl flex flex-col text-center">
-        <div className="mb-8">
-          <span className="font-bold tracking-widest uppercase text-xs">Premium Stays</span>
+      {/* EXPLORE JNS SECTION */}
+      <section className="pt-20 max-w-7xl mx-auto flex flex-col text-center">
+        <div className="mb-12">
+          <span className="font-bold tracking-widest uppercase text-xs">
+            Explore JNS
+          </span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
-            Browse <span className="text-indigo-500">Accommodation</span>
+            Choose Your <span className="text-indigo-500">Experience</span>
           </h2>
           <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
-          <p className="text-gray-400 text-sm mt-4">Luxury living spaces curated for your comfort and lifestyle.</p>
+          <p className="text-gray-400 text-sm mt-4">
+            One ecosystem. Three powerful experiences designed for performance and lifestyle.
+          </p>
         </div>
 
-        <div className="relative group/swiper-container px-44">
-          <button className="swiper-prev-button absolute left-2 md:left-[2px] top-1/2 -translate-y-1/2 z-20 w-20 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">←</button>
-          <button className="swiper-next-button absolute right-2 md:right-[2px] top-1/2 -translate-y-1/2 z-20 w-20 h-12 rounded-full border border-white/20 bg-zinc-950/50 backdrop-blur-md flex items-center justify-center hover:bg-indigo-600 transition-all text-white opacity-0 group-hover/swiper-container:opacity-100">→</button>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          {/* BADMINTON */}
+          <div className="group cursor-pointer bg-white/5 border border-white/10 
+                          rounded-[2.5rem] p-10 hover:border-indigo-500/50 
+                          transition-all text-center">
+            <div className="text-indigo-500 text-4xl mb-6">🏸</div>
+            <h3 className="text-2xl font-black uppercase mb-3">
+              Badminton
+            </h3>
+            <p className="text-gray-400 text-sm font-medium">
+              Professional courts & elite academy training.
+            </p>
+          </div>
 
-          <Swiper
-            effect={"coverflow"}
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={"auto"}
-            loop={true}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            coverflowEffect={{ rotate: 35, stretch: 0, depth: 200, modifier: 1, slideShadows: true }}
-            navigation={{ nextEl: ".swiper-next-button", prevEl: ".swiper-prev-button" }}
-            modules={[EffectCoverflow, Navigation, Autoplay]}
-            className="w-full"
-          >
-            {[
-              { name: "Elite Stay", img: eliteImg },
-              { name: "Roost", img: roostImg },
-              { name: "Sunrise", img: sunriseImg },
-              { name: "Elite Stay", img: eliteImg },
-              { name: "Roost", img: roostImg }
-            ].map((item, index) => (
-              <SwiperSlide key={index} className="max-w-[280px] md:max-w-[320px]">
-                <PropertyCard name={item.name} image={item.img} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {/* GYM */}
+          <div className="group cursor-pointer bg-white/5 border border-white/10 
+                          rounded-[2.5rem] p-10 hover:border-indigo-500/50 
+                          transition-all text-center">
+            <div className="text-indigo-500 text-4xl mb-6">🏋️‍♂️</div>
+            <h3 className="text-2xl font-black uppercase mb-3">
+              Gym
+            </h3>
+            <p className="text-gray-400 text-sm font-medium">
+              Strength, cardio & performance-driven fitness.
+            </p>
+          </div>
+
+          {/* COLIVING */}
+          <div className="group cursor-pointer bg-white/5 border border-white/10 
+                          rounded-[2.5rem] p-10 hover:border-indigo-500/50 
+                          transition-all text-center">
+            <div className="text-indigo-500 text-4xl mb-6">🏠</div>
+            <h3 className="text-2xl font-black uppercase mb-3">
+              Co-Living
+            </h3>
+            <p className="text-gray-400 text-sm font-medium">
+              Premium stays built for comfort & community.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -166,60 +181,6 @@ function Home() {
           <ReviewCard title="Clear and stress-free" text="The co-living spaces are modern, clean, and provide a great community atmosphere." author="Greeshma" time="22 hours ago" />
         </div>
       </section>
-
-      {/* 5. JNS MEMORIES SECTION */}
-      {/* <section className="pt-20 max-w-7xl flex flex-col text-center">
-        <div className="mb-8">
-          <span className="font-bold tracking-widest uppercase text-xs">Life at JNS</span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase mt-2">
-            At JNS We <span className="text-indigo-500">Create Memories</span>
-          </h2>
-          <div className="h-[2px] w-20 bg-indigo-600 mt-4 mx-auto"></div>
-          <p className="text-gray-400 text-sm mt-4">Spark while you stay by enjoying events, festivals, and celebrations.</p>
-        </div>
-
-        <div className="relative group/memories">
-          <Swiper
-            modules={[Navigation, Autoplay, Pagination]}
-            spaceBetween={30}
-            slidesPerView={1}
-            breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 5000 }}
-            className="pb-16"
-          >
-            <SwiperSlide>
-              <div className="grid grid-cols-2 gap-2 aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                <img src={eliteImg} className="w-full h-full object-cover hover:scale-110 transition duration-500" alt="M1" />
-                <img src={roostImg} className="w-full h-full object-cover hover:scale-110 transition duration-500" alt="M2" />
-                <img src={sunriseImg} className="w-full h-full object-cover hover:scale-110 transition duration-500" alt="M3" />
-                <img src={gymImg} className="w-full h-full object-cover hover:scale-110 transition duration-500" alt="M4" />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                <img src={badmintonImg} className="w-full h-full object-cover" alt="Event" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 flex items-end p-6">
-                  <span className="text-xs font-bold tracking-widest uppercase text-white/80">Festival Nights</span>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
-                <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-                  <source src={heroVideo} type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 flex items-center justify-center bg-zinc-950/20 group-hover:bg-zinc-950/40 transition-all">
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 group-hover:scale-110 transition">
-                    <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[15px] border-l-white border-b-[10px] border-b-transparent ml-1" />
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </section> */}
-
 
       {/* JNS MEMORIES SECTION */}
       <section className="pt-20 max-w-7xl flex flex-col text-center">
